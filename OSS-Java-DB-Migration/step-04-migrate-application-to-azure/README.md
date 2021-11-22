@@ -1,4 +1,4 @@
-# 01 - Deploy a Java EE application to Azure
+# 04 - Deploy a Java EE application to Azure App Service
 
 __This guide is part of the [migrate Java EE app to Azure training](../README.md)__
 
