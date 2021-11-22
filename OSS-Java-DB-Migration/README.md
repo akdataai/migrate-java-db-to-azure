@@ -59,7 +59,7 @@ Prerequisites and environment setup.
 
 Deploy Petstore Application and Database locally on to a VM (simulating on-premises)
  
-## [01 - Deploy a Java EE application to Azure](step-01-deploy-java-ee-app-to-vm/README.md) (15 minutes)
+## [01 - Deploy a Java EE application to Azure](step-01-deploy-java-ee-app-to-VM/README.md) (15 minutes)
 
 Create Azure Database for PostgreSQL Flexible Server.
 
@@ -74,12 +74,6 @@ Migrate Java EE application to Azure.
 ## [04 - Migrate Java EE application to Azure](step-04-migrate-application-to-azure/README.md) (30 minutes)
 
 Configure and monitor Java EE application and its dependencies using Azure Monitor.
-
-## [05 - Continuously Deploy using GitHub Actions](step-05-setup-github-actions/README.md) (15 minutes)
-
-Create a GitHub Actions workflow file to continuously deploy a Java EE application.
-
-## [Conclusion](step-99-conclusion/README.md) (5 minutes)
 
 ---
 
