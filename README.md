@@ -53,23 +53,25 @@ JBoss EAP on App Service is in preview.
 
 >💡 - __Frustration Avoidance Tip__. These will help you avoid potential pitfalls.
 
+Prerequisites and environment setup.
+
 ## [00 - Prerequisites and Setup](step-00-setup-your-environment/README.md) (15 minutes)
 
-Prerequisites and environment setup.
+Deploy Petstore Application and Database locally on to a VM (simulating on-premises)
  
-## [01 - Deploy a Java EE application to Azure](step-01-deploy-java-ee-app-to-azure/README.md) (15 minutes)
+## [01 - Deploy a Java EE application to Azure](step-01-deploy-java-ee-app-to-vm/README.md) (15 minutes)
 
-Deploy a Java EE application to Azure simulated on-premises VM.
+Create Azure Database for PostgreSQL Flexible Server.
 
-## [02 - Create a database](step-02-create-a-database/README.md) (10 minutes)
+## [02 - Create a database](step-02-create-azure-postgresql-database/README.md) (10 minutes)
 
-Create a database - PostgreSQL or MySQL or SQL Database.
+Migrate on-premises PostgreSQL database to Azure.
 
-## [03 - Bind Java EE application to the database](step-03-bind-java-ee-app-to-database/README.md) (15 minutes)
+## [03 - Migrate PostgreSQL database to Azure](step-03-migrate-database-to-azure/README.md) (15 minutes)
 
-Bind the Java EE application to the database.
+Migrate Java EE application to Azure.
 
-## [04 - Monitor Java EE application](step-04-monitor-java-ee-app/README.md) (30 minutes)
+## [04 - Migrate Java EE application to Azure](step-04-migrate-application-to-azure/README.md) (30 minutes)
 
 Configure and monitor Java EE application and its dependencies using Azure Monitor.
 
@@ -85,8 +87,6 @@ Create a GitHub Actions workflow file to continuously deploy a Java EE applicati
 
 This Java EE Petstore sample is forked from 
 [agoncal/agoncal-application-petstore-ee7](https://github.com/agoncal/agoncal-application-petstore-ee7) - see [Petstore README](./README-petstoreee7.md). 
-
-This lab itself is forked from [Azure Samples](https://github.com/Azure-Samples/migrate-javaee-app-to-azure-training.git) - to build in the full migration experience
 
 > When you create something and give it away, you lose control of what you've created and then, anything can happen.
 > 
