@@ -55,23 +55,23 @@ JBoss EAP on App Service is in preview.
 
 Prerequisites and environment setup.
 
-## [00 - Prerequisites and Setup](step-00-setup-your-environment/README.md) (15 minutes)
+## [00 - Prerequisites and Setup](OSS-Java-DB-Migration/step-00-setup-your-environment/README.md) (15 minutes)
 
 Deploy Petstore Application and Database locally on to a VM (simulating on-premises)
  
-## [01 - Deploy a Java EE application to Azure VM](step-01-deploy-java-ee-app-to-VM/README.md) (15 minutes)
+## [01 - Deploy a Java EE application to Azure VM](OSS-Java-DB-Migration/step-01-deploy-java-ee-app-to-VM/README.md) (15 minutes)
 
 Create Azure Database for PostgreSQL Flexible Server.
 
-## [02 - Create a database](step-02-create-azure-postgresql-database/README.md) (10 minutes)
+## [02 - Create a database](OSS-Java-DB-Migration/step-02-create-azure-postgresql-database/README.md) (10 minutes)
 
 Migrate on-premises PostgreSQL database to Azure.
 
-## [03 - Migrate PostgreSQL database to Azure](step-03-migrate-database-to-azure/README.md) (15 minutes)
+## [03 - Migrate PostgreSQL database to Azure](OSS-Java-DB-Migration/step-03-migrate-database-to-azure/README.md) (15 minutes)
 
 Migrate Java EE application to Azure.
 
-## [04 - Migrate Java EE application to Azure](step-04-migrate-application-to-azure/README.md) (30 minutes)
+## [04 - Migrate Java EE application to Azure](OSS-Java-DB-Migration/step-04-migrate-application-to-azure/README.md) (30 minutes)
 
 Configure and monitor Java EE application and its dependencies using Azure Monitor.
 
