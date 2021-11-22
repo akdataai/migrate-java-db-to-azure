@@ -86,6 +86,8 @@ Create a GitHub Actions workflow file to continuously deploy a Java EE applicati
 This Java EE Petstore sample is forked from 
 [agoncal/agoncal-application-petstore-ee7](https://github.com/agoncal/agoncal-application-petstore-ee7) - see [Petstore README](./README-petstoreee7.md). 
 
+This lab itself is forked from [Azure Samples](https://github.com/Azure-Samples/migrate-javaee-app-to-azure-training.git) - to build in the full migration experience
+
 > When you create something and give it away, you lose control of what you've created and then, anything can happen.
 > 
 > I created this Petstore application years ago to show how Java EE components would work all together. 
