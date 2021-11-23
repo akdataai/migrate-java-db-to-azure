@@ -72,6 +72,11 @@ Within your Azure subscription the Bicep template within this repository can be 
        ```bash
       alias jq=/c/jq/jq-win64.exe
       ```
+      * Call the .bashrc file to source jq
+      ```bash
+      . ~/.bashrc
+      ```
+      
     * Using Git Bash download the Azure App Service for Java Source repository to c:/git
       * $ mkdir /c/git/
       * $ cd /c/git
