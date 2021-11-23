@@ -16,7 +16,7 @@ Within your Azure subscription the Bicep template within this repository can be 
 
 * To deploy the bicep template use Azure Cloud Shell 
     * Create an Azure Resource Group to deploy into (e.g. oss-hack)
-    * Upload the package to your Azure Cloud subscription
+    * Upload the package to your Azure Cloud subscription (Change to Bash Shell...)
     * Unpack the OSS-App-DB-Bicep.zip
     * Navigate to the unpacked folder
     * Edit "./parameters/parameters.json" to reflect the resource group to deploy into
