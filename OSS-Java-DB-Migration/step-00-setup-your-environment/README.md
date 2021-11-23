@@ -62,7 +62,7 @@ Within your Azure subscription the Bicep template within this repository can be 
       * Edit the System Environment Variables and set the PATH to reference the Maven Installation
         * c:\maven\apache-maven-3.8.4\bin
     
-    * PostgreSQL Database tools:
+    * PostgreSQL Database tools (Optional):
       * [PostgreSQL CLI](https://www.postgresql.org/docs/current/app-psql.html)
     
     * The [`jq` utility](https://stedolan.github.io/jq/download/). 
