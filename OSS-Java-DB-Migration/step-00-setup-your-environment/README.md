@@ -21,7 +21,9 @@ Within your Azure subscription the Bicep template within this repository can be 
     * Navigate to the unpacked folder
     * Edit "./parameters/parameters.json" to reflect the resource group to deploy into
     * Run the Bicep template to deploy
+        ```bash
         az deployment group create --template-file ./main.bicep  --parameters ./parameters/parameters.json -g "oss-hack"
+        ```
 
 * Following deployment
     * Validate the Bicep deployment has completed successfully
