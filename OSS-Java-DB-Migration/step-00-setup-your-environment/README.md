@@ -78,12 +78,14 @@ Within your Azure subscription the Bicep template within this repository can be 
       ```
       
     * Using Git Bash download the Azure App Service for Java Source repository to c:/git
-      * $ mkdir /c/git/
-      * $ cd /c/git
-      * $ git clone https://github.com/Azure-Samples/migrate-javaee-app-to-azure-training.git
+      ```bash
+      mkdir /c/git/
+      cd /c/git
+      git clone https://github.com/Azure-Samples/migrate-javaee-app-to-azure-training.git
+      ````
     
     * Download and install Putty MSI
-      *    https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html
+      * Copy the link [here](https://the.earth.li/~sgtatham/putty/latest/w64/putty-64bit-0.76-installer.msi) and paste into your lab browser to download directly 
 
 ---
 
