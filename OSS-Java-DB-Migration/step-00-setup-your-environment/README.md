@@ -45,18 +45,19 @@ Within your Azure subscription the Bicep template within this repository can be 
     * Install Edge Browser
       * https://www.microsoft.com/en-us/edge?r=1
   
-    * [JDK 1.8](https://cdn.azul.com/zulu/bin/zulu8.58.0.13-ca-jdk8.0.312-win_x64.msi)
+    * JDK 1.8
+    *  Copy this link [here](https://cdn.azul.com/zulu/bin/zulu8.58.0.13-ca-jdk8.0.312-win_x64.msi) and paste into your lab browser to download directly
       * As part of the installation select the option to set the JAVA_HOME
-        * The environment variable `JAVA_HOME` should be set to the path of `javac` in the JDK installation.
+        * The step above will set the environment variable `JAVA_HOME` to the path of `javac` for this JDK installation.
   
-    * [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest) 
-    
+    * Azure CLI
+    * Copy this link [here](https://aka.ms/installazurecliwindows) and paste into your lab browser to download directly 
+   
     * The Bash shell. 
       * GitBash is pre-installed upon "oss-hack-rdp"
-      * Where a local desktop is used
-        * Use [Git Bash that accompanies the Windows distribution of Git](https://git-scm.com/download/win)
     
-    * [Maven](http://maven.apache.org/)
+    * Maven
+      * Copy this link [here](https://dlcdn.apache.org/maven/maven-3/3.8.4/binaries/apache-maven-3.8.4-bin.zip) and paste into your lab browser to download directly 
       * Download and unpack to c:\maven
       * $ mkdir /c/mv
       * $ cd /c/mvn
