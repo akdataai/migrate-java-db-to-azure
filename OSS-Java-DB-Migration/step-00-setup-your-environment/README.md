@@ -66,7 +66,7 @@ Within your Azure subscription the Bicep template within this repository can be 
       * [PostgreSQL CLI](https://www.postgresql.org/docs/current/app-psql.html)
     
     * The [`jq` utility](https://stedolan.github.io/jq/download/). 
-      * On Windows, download [this Windows port of JQ](https://github.com/stedolan/jq/releases)
+        * Copy the link [here](https://github.com/stedolan/jq/releases/download/jq-1.6/jq-win64.exe) and paste into your lab browser to download directly 
         * Download to c:\jq
       * Launch GitBash and edit the the `~/.bashrc` file to point to jq: 
        ```bash
