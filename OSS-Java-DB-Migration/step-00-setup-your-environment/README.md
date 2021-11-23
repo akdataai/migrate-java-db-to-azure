@@ -45,7 +45,7 @@ Within your Azure subscription the Bicep template within this repository can be 
     * Install Edge Browser
       * https://www.microsoft.com/en-us/edge?r=1
   
-    * [JDK 1.8](https://www.azul.com/downloads/azure-only/zulu/?&version=java-8-lts&architecture=x86-64-bit&package=jdk)
+    * [JDK 1.8](https://www.azul.com/downloads/?version=java-8-lts&os=windows&package=jdk)
       * As part of the installation select the option to set the JAVA_HOME
         * The environment variable `JAVA_HOME` should be set to the path of `javac` in the JDK installation.
   
