@@ -33,49 +33,54 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
         tar xvf wildfly-$WILDFLY_RELEASE.Final.tar.gz
         mv wildfly-25.0.1.Final /opt/wildfly
         ```
-    * Start WildFly as a service
-    ```bash
-    sudo groupadd --system wildfly
-    ```
-    ```bash
-    sudo useradd -s /sbin/nologin --system -d /opt/wildfly  -g wildfly wildfly
-    ```
-    ```bash
-    sudo mkdir /etc/wildfly
-    ```
-    ```bash
-    sudo cp /opt/wildfly/docs/contrib/scripts/systemd/wildfly.conf /etc/wildfly/
-    ```
-    ```bash
-    sudo cp /opt/wildfly/docs/contrib/scripts/systemd/wildfly.service /etc/systemd/system/
-    ```
-    ```bash
-    sudo cp /opt/wildfly/docs/contrib/scripts/systemd/launch.sh /opt/wildfly/bin/
-    ```
-    ```bash
-    sudo chmod +x /opt/wildfly/bin/launch.sh
-    ```
-    ```bash
-    sudo chown -R wildfly:wildfly /opt/wildfly
-    ```
-    ```bash
-    sudo systemctl daemon-reload
-    ```
-    ```bash
-    sudo restorecon -Rv /opt/wildfly/bin/
-    ```
-    ```bash
-    setenforce 0
-    ```
-    ```bash
-    sudo systemctl start wildfly
-    ```
-    ```bash
-    sudo systemctl enable wildfly
-    ```
-    ```bash
-    systemctl status wildfly
-    ```
+    
+   * Configure WildFly to run as a service within Linux
+    	* Create a service user for Wildfly 
+	    ```bash
+	    sudo groupadd --system wildfly
+	    ```
+	    ```bash
+	    sudo useradd -s /sbin/nologin --system -d /opt/wildfly  -g wildfly wildfly
+	    ```
+	
+	*  Place WildFly Service scripts into /etc/wildfly and systemd area
+	    ```bash
+	    sudo mkdir /etc/wildfly
+	    ```
+	    ```bash
+	    sudo cp /opt/wildfly/docs/contrib/scripts/systemd/wildfly.conf /etc/wildfly/
+	    ```
+	    ```bash
+	    sudo cp /opt/wildfly/docs/contrib/scripts/systemd/wildfly.service /etc/systemd/system/
+	    ```
+	    ```bash
+	    sudo cp /opt/wildfly/docs/contrib/scripts/systemd/launch.sh /opt/wildfly/bin/
+	    ```
+	    ```bash
+	    sudo chmod +x /opt/wildfly/bin/launch.sh
+	    ```
+	    ```bash
+	    sudo chown -R wildfly:wildfly /opt/wildfly
+	    ```
+    	* Reload the Services Daemon and Start WildFly as a service
+	    ```bash
+	    sudo systemctl daemon-reload
+	    ```
+	    ```bash
+	    sudo restorecon -Rv /opt/wildfly/bin/
+	    ```
+	    ```bash
+	    setenforce 0
+	    ```
+	    ```bash
+	    sudo systemctl start wildfly
+	    ```
+	    ```bash
+	    sudo systemctl enable wildfly
+	    ```
+	    ```bash
+	    systemctl status wildfly
+	    ```
     * Check the WildFly service is running on port 8080
     ```bash
     ss -tunelp | grep 8080
