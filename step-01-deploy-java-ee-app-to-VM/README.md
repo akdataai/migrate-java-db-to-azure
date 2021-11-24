@@ -83,43 +83,44 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
     ```
     
     * Add a WildFly Management User for the portal
-    * Run the script /opt/wildfly/bin/add-user.sh 
-    * Add a Management user
-    * Provide a username
-    * Provide a password
-    * Leave the groups blank
-    * Confirm (yes) adding the user to the realm 'ManagementRealm'
-    * Confirm (yes) for the user to connect to the master or for a remote connection
-    ```bash
-    sudo /opt/wildfly/bin/add-user.sh
-    	What type of user do you wish to add? 
-	 a) Management User (mgmt-users.properties) 
-	 b) Application User (application-users.properties)
-	(a): a
+	    * Run the script /opt/wildfly/bin/add-user.sh 
+	    * Add a Management user
+	    * Provide a username
+	    * Provide a password
+	    * Leave the groups blank
+	    * Confirm (yes) adding the user to the realm 'ManagementRealm'
+	    * Confirm (yes) for the user to connect to the master or for a remote connection
+	    ```bash
+	    sudo /opt/wildfly/bin/add-user.sh
+		What type of user do you wish to add? 
+		 a) Management User (mgmt-users.properties) 
+		 b) Application User (application-users.properties)
+		(a): a
 
-	Enter the details of the new user to add.
-	Using realm 'ManagementRealm' as discovered from the existing property files.
-	Username : wildflyAdmin
-	Password recommendations are listed below. To modify these restrictions edit the add-user.properties configuration file.
-	 - The password should be different from the username
-	 - The password should not be one of the following restricted values {root, admin, administrator}
-	 - The password should contain at least 8 characters, 1 alphabetic character(s), 1 digit(s), 1 non-alphanumeric symbol(s)
-	Password : 
-	WFLYDM0102: Password should have at least 1 non-alphanumeric symbol.
-	Are you sure you want to use the password entered yes/no? yes
-	Re-enter Password : 
-	What groups do you want this user to belong to? (Please enter a comma separated list, or leave blank for none)[  ]: 
-	About to add user 'WildflyAdmin' for realm 'ManagementRealm'
-	Is this correct yes/no? yes
-	Added user 'WildflyAdmin' to file '/opt/wildfly/standalone/configuration/mgmt-users.properties'
-	Added user 'WildflyAdmin' to file '/opt/wildfly/domain/configuration/mgmt-users.properties'
-	Added user 'WildflyAdmin' with groups  to file '/opt/wildfly/standalone/configuration/mgmt-groups.properties'
-	Added user 'WildflyAdmin' with groups  to file '/opt/wildfly/domain/configuration/mgmt-groups.properties'
-	Is this new user going to be used for one AS process to connect to another AS process? 
-	e.g. for a slave host controller connecting to the master or for a Remoting connection for server to server Jakarta Enterprise Beans calls.
-	yes/no? yes
-	To represent the user add the following to the server-identities definition <secret value="RGVtb3Bhc3MxMjM0NTY3" />
-    ```
+		Enter the details of the new user to add.
+		Using realm 'ManagementRealm' as discovered from the existing property files.
+		Username : wildflyAdmin
+		Password recommendations are listed below. To modify these restrictions edit the add-user.properties configuration file.
+		 - The password should be different from the username
+		 - The password should not be one of the following restricted values {root, admin, administrator}
+		 - The password should contain at least 8 characters, 1 alphabetic character(s), 1 digit(s), 1 non-alphanumeric symbol(s)
+		Password : 
+		WFLYDM0102: Password should have at least 1 non-alphanumeric symbol.
+		Are you sure you want to use the password entered yes/no? yes
+		Re-enter Password : 
+		What groups do you want this user to belong to? (Please enter a comma separated list, or leave blank for none)[  ]: 
+		About to add user 'WildflyAdmin' for realm 'ManagementRealm'
+		Is this correct yes/no? yes
+		Added user 'WildflyAdmin' to file '/opt/wildfly/standalone/configuration/mgmt-users.properties'
+		Added user 'WildflyAdmin' to file '/opt/wildfly/domain/configuration/mgmt-users.properties'
+		Added user 'WildflyAdmin' with groups  to file '/opt/wildfly/standalone/configuration/mgmt-groups.properties'
+		Added user 'WildflyAdmin' with groups  to file '/opt/wildfly/domain/configuration/mgmt-groups.properties'
+		Is this new user going to be used for one AS process to connect to another AS process? 
+		e.g. for a slave host controller connecting to the master or for a Remoting connection for server to server Jakarta Enterprise Beans calls.
+		yes/no? yes
+		To represent the user add the following to the server-identities definition <secret value="RGVtb3Bhc3MxMjM0NTY3" />
+	    ```
+
     * Set WildFly path for login by adding the PATH in the bashrc file
     ```bash
     cat >> ~/.bashrc <<EOF
