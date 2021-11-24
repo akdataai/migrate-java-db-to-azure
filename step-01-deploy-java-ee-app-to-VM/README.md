@@ -62,7 +62,7 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
 	    ```bash
 	    sudo chown -R wildfly:wildfly /opt/wildfly
 	    ```
-    	* Reload the Services Daemon and Start WildFly as a service
+  * Reload the Services Daemon and Start WildFly as a service
 	    ```bash
 	    sudo systemctl daemon-reload
 	    ```
