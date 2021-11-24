@@ -227,7 +227,7 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
     * Navigate to Deployments 
     * Choose the PostgreSQL JDBC driver downloaded above
     * Accept the Name and Finish
-    * <img src="media/UploadPostgreSQLJar.png" width=300 align=left>
+<img src="media/UploadPostgreSQLJar.png" width=300 align=centre>
 
   * Navigate to 
     * Navigate to Configuration -> Datasources & Drivers
