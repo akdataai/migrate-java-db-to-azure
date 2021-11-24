@@ -228,7 +228,7 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
     * Choose the PostgreSQL JDBC driver downloaded above
     * Accept the Name and Finish
   
-   ![Add JDBC postgresql-42.3.1.jar Deployment](media/UploadPostgreSQLJar.png)
+   ![Add JDBC postgresql-42.3.1.jar Deployment](media/UploadPostgreSQLJar.png){:height="50%" width="50%"}
 
   * Navigate to 
     * Navigate to Configuration -> Datasources & Drivers
@@ -242,11 +242,11 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
       * Set the password as set previously (e.g. Demopass1234567)
     * Test the connection is successful, review and deploy
 
-![Add PostgreSQL Datasource](media/AddDataSource.png)
-![Configure JNDI Name](media/JDBCJNDIName.png)
-![Select PostgreSQL postgresql-42.3.1.jar Driver](media/JDBCDriverSelection.png)
-![Configure PostgreSQL Connection](media/PostgreSQLConnectionString.png)
-![Test PostgreSQL Connection](media/ConnectionTest.png)
+![Add PostgreSQL Datasource](media/AddDataSource.png){:height="50%" width="50%"}
+![Configure JNDI Name](media/JDBCJNDIName.png){:height="50%" width="50%"}
+![Select PostgreSQL postgresql-42.3.1.jar Driver](media/JDBCDriverSelection.png){:height="50%" width="50%"}
+![Configure PostgreSQL Connection](media/PostgreSQLConnectionString.png){:height="50%" width="50%"}
+![Test PostgreSQL Connection](media/ConnectionTest.png){:height="50%" width="50%"}
 
   * Reload WildFly
     * Navigate to Runtime
@@ -274,7 +274,7 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
   mvn clean install -Dmaven.test.skip=true
   ```
 
-# Deploy to Pet Store Wildfly
+# Deploy Pet Store Application to Wildfly
   * Login to Administration Console
     http://10.0.1.4:9990
   * Add a new deployment
@@ -282,7 +282,7 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
     * c:\git\migrate-javaee-app-to-azure-training\target\applicationPetstore.war
   * Select next through to deploy
 
-![Deploy Pet Store WAR](media/DeployPetstoreJar.png)
+![Deploy Pet Store WAR](media/DeployPetstoreJar.png){:height="50%" width="50%"}
 
 # In browser test the application is running:
   * Using Edge navigate to 
