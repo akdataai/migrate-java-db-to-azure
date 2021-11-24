@@ -61,10 +61,11 @@ Within your Azure subscription the Bicep template within this repository can be 
     * Maven
       * Copy the link [here](https://dlcdn.apache.org/maven/maven-3/3.8.4/binaries/apache-maven-3.8.4-bin.zip) and paste into your lab browser to download directly 
       * Download and unpack to c:\maven
-      * Edit the System Environment Variables and set the PATH to reference the Maven Installation
+      * From the Start Menu search and launch "System Environment Variables"
+      * Within the System Environment Variables section
+      * Add to the PATH to the Maven Installation
         * c:\maven\apache-maven-3.8.4\bin
-  
-    ![System Environment Parameters](media/SystemEnvironmentVariables.png)
+    <img src="media/SystemEnvironmentVariables.png" width=500 align=centre>
     
     * PostgreSQL Database tools (Optional):
       * [PostgreSQL CLI](https://www.postgresql.org/docs/current/app-psql.html)
