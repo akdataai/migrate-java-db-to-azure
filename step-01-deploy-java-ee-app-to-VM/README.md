@@ -76,17 +76,55 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
     ```bash
     systemctl status wildfly
     ```
+    * Check the WildFly service is running on port 8080
     ```bash
     ss -tunelp | grep 8080
+    	tcp   LISTEN 0      128          0.0.0.0:8080      0.0.0.0:*    users:(("java",pid=79152,fd=483)) uid:991 ino:358878 sk:10 <-> 
     ```
+    
+    * Add a WildFly Management User for the portal
+    * Run the script /opt/wildfly/bin/add-user.sh 
+    * Add a Management user
+    * Provide a username
+    * Provide a password
+    * Leave the groups blank
+    * Confirm (yes) adding the user to the realm 'ManagementRealm'
+    * Confirm (yes) for the user to connect to the master or for a remote connection
     ```bash
     sudo /opt/wildfly/bin/add-user.sh
+    	What type of user do you wish to add? 
+	 a) Management User (mgmt-users.properties) 
+	 b) Application User (application-users.properties)
+	(a): a
+
+	Enter the details of the new user to add.
+	Using realm 'ManagementRealm' as discovered from the existing property files.
+	Username : wildflyAdmin
+	Password recommendations are listed below. To modify these restrictions edit the add-user.properties configuration file.
+	 - The password should be different from the username
+	 - The password should not be one of the following restricted values {root, admin, administrator}
+	 - The password should contain at least 8 characters, 1 alphabetic character(s), 1 digit(s), 1 non-alphanumeric symbol(s)
+	Password : 
+	WFLYDM0102: Password should have at least 1 non-alphanumeric symbol.
+	Are you sure you want to use the password entered yes/no? yes
+	Re-enter Password : 
+	What groups do you want this user to belong to? (Please enter a comma separated list, or leave blank for none)[  ]: 
+	About to add user 'WildflyAdmin' for realm 'ManagementRealm'
+	Is this correct yes/no? yes
+	Added user 'WildflyAdmin' to file '/opt/wildfly/standalone/configuration/mgmt-users.properties'
+	Added user 'WildflyAdmin' to file '/opt/wildfly/domain/configuration/mgmt-users.properties'
+	Added user 'WildflyAdmin' with groups  to file '/opt/wildfly/standalone/configuration/mgmt-groups.properties'
+	Added user 'WildflyAdmin' with groups  to file '/opt/wildfly/domain/configuration/mgmt-groups.properties'
+	Is this new user going to be used for one AS process to connect to another AS process? 
+	e.g. for a slave host controller connecting to the master or for a Remoting connection for server to server Jakarta Enterprise Beans calls.
+	yes/no? yes
+	To represent the user add the following to the server-identities definition <secret value="RGVtb3Bhc3MxMjM0NTY3" />
     ```
-    * Set WildFly path for login
+    * Set WildFly path for login by adding the PATH in the bashrc file
     ```bash
     cat >> ~/.bashrc <<EOF
     export WildFly_BIN="/opt/wildfly/bin/"
-    export PATH=\$PATH:\$WildFly_BIN
+    export PATH=\$PATH:/opt/wildfly/bin/
     EOF
     ```
     
@@ -100,9 +138,10 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
     vi /opt/wildfly/bin/launch.sh
     $WILDFLY_HOME/bin/standalone.sh -c $2 -b $3 -bmanagement=0.0.0.0
     ```
-    * Validate WildFly is running on port 9990
+    * Validate WildFly Admin Service is running on port 9990
     ```bash
     ss -tunelp | grep 9990
+    	tcp   LISTEN 0      50           0.0.0.0:9990      0.0.0.0:*    users:(("java",pid=79152,fd=497)) uid:991 ino:358887 sk:13 <->  
     ```
 
 * Deploy PostgreSQL 12
