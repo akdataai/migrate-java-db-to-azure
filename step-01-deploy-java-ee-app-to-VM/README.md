@@ -279,11 +279,10 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
   * Select the application Petstore.war
     * c:\git\migrate-javaee-app-to-azure-training\target\applicationPetstore.war
   * Select next through to deploy
-
-![Deploy Pet Store WAR](media/DeployPetstoreJar.png){:height="50%" width="50%"}
+<img src="media/DeployPetstoreJar.png" width=300 align=centre>
 
 # In browser test the application is running:
-  * Using Edge navigate to 
+  * Using Edge upon the RDP navigate to 
     http://10.0.1.4:8080/applicationPetstore/shopping/main.xhtml
 
 # Check the deployment has populated the PostgreSQL database
