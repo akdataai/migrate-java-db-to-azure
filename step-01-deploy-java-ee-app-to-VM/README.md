@@ -34,132 +34,135 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
         mv wildfly-25.0.1.Final /opt/wildfly
         ```
     * Start WildFly as a service
-        ```bash
-        sudo groupadd --system wildfly
-	```
-        ```bash
-	sudo useradd -s /sbin/nologin --system -d /opt/wildfly  -g wildfly wildfly
-        ```
-	```bash
-	sudo mkdir /etc/wildfly
-        ```
-	```bash
-	sudo cp /opt/wildfly/docs/contrib/scripts/systemd/wildfly.conf /etc/wildfly/
-        ```
-	```bash
-	sudo cp /opt/wildfly/docs/contrib/scripts/systemd/wildfly.service /etc/systemd/system/
-        ```
-	```bash
-	sudo cp /opt/wildfly/docs/contrib/scripts/systemd/launch.sh /opt/wildfly/bin/
-        ```
-	```bash
-	sudo chmod +x /opt/wildfly/bin/launch.sh
-        ```
-	```bash
-	sudo chown -R wildfly:wildfly /opt/wildfly
-        ```
-	```bash
-	sudo systemctl daemon-reload
-        ```
-	```bash
-	sudo restorecon -Rv /opt/wildfly/bin/
-        ```
-	```bash
-	setenforce 0
-        ```
-	```bash
-	sudo systemctl start wildfly
-        ```
-	```bash
-	sudo systemctl enable wildfly
-        ```
-	```bash
-	systemctl status wildfly
-        ```
-	```bash
-	ss -tunelp | grep 8080
-        ```
-	```bash
-	sudo /opt/wildfly/bin/add-user.sh
-        ```
+    ```bash
+    sudo groupadd --system wildfly
+    ```
+    ```bash
+    sudo useradd -s /sbin/nologin --system -d /opt/wildfly  -g wildfly wildfly
+    ```
+    ```bash
+    sudo mkdir /etc/wildfly
+    ```
+    ```bash
+    sudo cp /opt/wildfly/docs/contrib/scripts/systemd/wildfly.conf /etc/wildfly/
+    ```
+    ```bash
+    sudo cp /opt/wildfly/docs/contrib/scripts/systemd/wildfly.service /etc/systemd/system/
+    ```
+    ```bash
+    sudo cp /opt/wildfly/docs/contrib/scripts/systemd/launch.sh /opt/wildfly/bin/
+    ```
+    ```bash
+    sudo chmod +x /opt/wildfly/bin/launch.sh
+    ```
+    ```bash
+    sudo chown -R wildfly:wildfly /opt/wildfly
+    ```
+    ```bash
+    sudo systemctl daemon-reload
+    ```
+    ```bash
+    sudo restorecon -Rv /opt/wildfly/bin/
+    ```
+    ```bash
+    setenforce 0
+    ```
+    ```bash
+    sudo systemctl start wildfly
+    ```
+    ```bash
+    sudo systemctl enable wildfly
+    ```
+    ```bash
+    systemctl status wildfly
+    ```
+    ```bash
+    ss -tunelp | grep 8080
+    ```
+    ```bash
+    sudo /opt/wildfly/bin/add-user.sh
+    ```
     * Set WildFly path for login
-        ```bash
-        cat >> ~/.bashrc <<EOF
-	    export WildFly_BIN="/opt/wildfly/bin/"
-	    export PATH=\$PATH:\$WildFly_BIN
-	    EOF
-        source ~/.bashrc
-        ```
+    ```bash
+    cat >> ~/.bashrc <<EOF
+    export WildFly_BIN="/opt/wildfly/bin/"
+    export PATH=\$PATH:\$WildFly_BIN
+    EOF
+    ```
+    
+    * Source the new PATH in your session
+    ```bash
+    source ~/.bashrc
+    ```
+    
     * Set WildFly to listen on all network devices
-        ```bash
-        vi /opt/wildfly/bin/launch.sh   
-	        $WILDFLY_HOME/bin/standalone.sh -c $2 -b $3 -bmanagement=0.0.0.0
-        ```
+    ```bash
+    vi /opt/wildfly/bin/launch.sh
+    $WILDFLY_HOME/bin/standalone.sh -c $2 -b $3 -bmanagement=0.0.0.0
+    ```
     * Validate WildFly is running on port 9990
-        ```bash
-        ss -tunelp | grep 9990
-        ```
+    ```bash
+    ss -tunelp | grep 9990
+    ```
 
 * Deploy PostgreSQL 12
   * Install PostgreSQL 12
-    ```bash
-    sudo yum -y install https://download.postgresql.org/pub/repos/yum/reporpms/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm
-    ```
-    ```bash
-    sudo dnf -qy module disable postgresql
-    ```
-    ```bash
-    sudo dnf module enable postgresql:12
-    ```
-    ```bash
-    sudo dnf -y install postgresql12 postgresql12-server
-    ```
-    ```bash
-    sudo dnf -y install postgresql-contrib
-    ```
+  ```bash
+  sudo dnf -qy module disable postgresql
+  ```
+  ```bash
+  sudo dnf module enable postgresql:12
+  ```
+  ```bash
+  sudo dnf install postgresql-server
+  ```
+  ```bash
+  sudo dnf install postgresql-contrib
+  ```
   
   * Initialise PostgreSQL 
-    ```bash
-    sudo postgresql-setup --initdb
-    ```
-    ```bash
-    sudo systemctl start postgresql
-    ```
-    ```bash
-    sudo systemctl enable postgresql
-    ```
+  ```bash
+  sudo postgresql-setup --initdb
+  ```
+  ```bash
+  sudo systemctl start postgresql
+  ```
+  ```bash
+  sudo systemctl enable postgresql
+  ```
 
   * Configure PostgreSQL to listen and permit connections on all network devices
     * Edit the pg_hba.conf
     * Set IPv4 to accept connections from all addresses
     * Set the local and IPv4 connection method to trust (not ident)
-        ```bash
-        vi /var/lib/pgsql/data/pg_hba.conf
+    ```bash
+    vi /var/lib/pgsql/data/pg_hba.conf
 	        # TYPE  DATABASE        USER            ADDRESS                 METHOD
 	        # "local" is for Unix domain socket connections only
 	        local   all             all                                     **trust**
 	        # IPv4 local connections:
 	        host    all             all             **0.0.0.0/0 **              **trust**
-        ```
+    ```
     * Set PostgreSQL to listen on all addresses
-        ```bash
-        vi /var/lib/pgsql/data/postgresql.conf
+    ```bash
+    vi /var/lib/pgsql/data/postgresql.conf
 	        listen_addresses = '*'
-        ```
+    ```
     * Restart PostgreSQL
-        ```bash
-        sudo systemctl restart postgresql
-        ```
+    ```bash
+    sudo systemctl restart postgresql
+    ```
     * Set the PostgreSQL default "postgresql" user password (example below uses the password Demopass1234567)
-        ```bash
-        psql -U postgres postgres
-	    postgres=# alter user postgres password 'Demopass1234567';
-        ```
+    ```bash
+    psql -U postgres postgres
+    ```
+    ```bash
+    postgres=# alter user postgres password 'Demopass1234567';
+    ```
     * Check connection to PostgreSQL
-        ```bash
-        psql "dbname=postgres host=10.0.1.4 user=postgres password=Demopass1234567 port=5432"
-        ```
-
+    ```bash
+    psql "dbname=postgres host=10.0.1.4 user=postgres password=Demopass1234567 port=5432"
+    ```
 
 ## Deploy Pet Store Application to WildFly and PostgreSQL
 
@@ -190,19 +193,23 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
 # Package Pet Store application to deploy
   * Launch Git Bash session
   * Navigate to the git package
-    ```bash
-    cd /c/git/migrate-javaee-app-to-azure-training
-    ```
+  ```bash
+  cd /c/git/migrate-javaee-app-to-azure-training
+  ```
   * Copy the PostgreSQL persistence file to the META-INF folder for deployment
-    ```bash
-    cp migrate-javaee-app-to-azure-training/.scripts/persistence-postgresql.xml ../src/main/resources/META-INF/persistence.xml
-    ```
+  ```bash
+  cp migrate-javaee-app-to-azure-training/.scripts/persistence-postgresql.xml ../src/main/resources/META-INF/persistence.xml
+  ```
   * Build the Pet Store WAR file using Maven for deployment
-    ```bash
-    mvn clean compile -Dmaven.test.skip=true
-    mvn clean package -Dmaven.test.skip=true
-    mvn clean install -Dmaven.test.skip=true
-    ```
+  ```bash
+  mvn clean compile -Dmaven.test.skip=true
+  ```
+  ```bash
+  mvn clean package -Dmaven.test.skip=true
+  ```
+  ```bash
+  mvn clean install -Dmaven.test.skip=true
+  ```
 
 # Deploy to Pet Store Wildfly
   * Login to Administration Console
@@ -218,9 +225,9 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
 
 # Check the deployment has populated the PostgreSQL database
   * Using psql from Git Bash connect to PostgreSQL and check the tables and records have been deployed 
-    ```bash
-    psql "dbname=postgres host=10.0.1.4 user=postgres password=Demopass1234567 port=5432"
-    postgres=# \dt
+  ```bash
+  psql "dbname=postgres host=10.0.1.4 user=postgres password=Demopass1234567 port=5432"
+  postgres=# \dt
                         List of relations
             Schema |        Name        | Type  |  Owner
             --------+--------------------+-------+----------
@@ -233,8 +240,8 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
             public | purchase_order     | table | postgres
             public | t_order_order_line | table | postgres
             (8 rows)
-    postgres=# select * from customer;
-    ```
+  postgres=# select * from customer;
+  ```
 ---
 
 ⬅️ Previous guide: [00 - Prerequisites and Setup](../step-00-setup-your-environment/README.md)
