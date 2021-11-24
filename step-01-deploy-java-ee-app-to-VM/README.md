@@ -81,13 +81,13 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
 	    ```bash
 	    systemctl status wildfly
 	    ```
-    * Check the WildFly service is running on port 8080
+  * Check the WildFly service is running on port 8080
     ```bash
     ss -tunelp | grep 8080
     	tcp   LISTEN 0      128          0.0.0.0:8080      0.0.0.0:*    users:(("java",pid=79152,fd=483)) uid:991 ino:358878 sk:10 <-> 
     ```
     
-    * Add a WildFly Management User for the portal
+  * Add a WildFly Management User for the portal
 	    * Run the script /opt/wildfly/bin/add-user.sh 
 	    * Add a Management user
 	    * Provide a username
@@ -126,7 +126,7 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
 		To represent the user add the following to the server-identities definition <secret value="RGVtb3Bhc3MxMjM0NTY3" />
 	    ```
 
-    * Set WildFly path for login by adding the PATH in the bashrc file
+  * Set WildFly path for login by adding the PATH in the bashrc file
     ```bash
     cat >> ~/.bashrc <<EOF
     export WildFly_BIN="/opt/wildfly/bin/"
@@ -134,17 +134,17 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
     EOF
     ```
     
-    * Source the new PATH in your session
+  * Source the new PATH in your session
     ```bash
     source ~/.bashrc
     ```
     
-    * Set WildFly to listen on all network devices
+  * Set WildFly to listen on all network devices
     ```bash
     vi /opt/wildfly/bin/launch.sh
     $WILDFLY_HOME/bin/standalone.sh -c $2 -b $3 -bmanagement=0.0.0.0
     ```
-    * Validate WildFly Admin Service is running on port 9990
+  * Validate WildFly Admin Service is running on port 9990
     ```bash
     ss -tunelp | grep 9990
     	tcp   LISTEN 0      50           0.0.0.0:9990      0.0.0.0:*    users:(("java",pid=79152,fd=497)) uid:991 ino:358887 sk:13 <->  
@@ -188,22 +188,27 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
 	        # IPv4 local connections:
 	        host    all             all             **0.0.0.0/0 **              **trust**
     ```
-    * Set PostgreSQL to listen on all addresses
+    
+    * Configure PostgreSQL to listen on all addresses
     ```bash
     vi /var/lib/pgsql/data/postgresql.conf
 	        listen_addresses = '*'
     ```
+    
     * Restart PostgreSQL
     ```bash
     sudo systemctl restart postgresql
     ```
+    
     * Set the PostgreSQL default "postgresql" user password (example below uses the password Demopass1234567)
     ```bash
     psql -U postgres postgres
     ```
     ```bash
     postgres=# alter user postgres password 'Demopass1234567';
+    postgres=# \q
     ```
+
     * Check connection to PostgreSQL
     ```bash
     psql "dbname=postgres host=10.0.1.4 user=postgres password=Demopass1234567 port=5432"
