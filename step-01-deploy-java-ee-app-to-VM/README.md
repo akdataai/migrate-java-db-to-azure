@@ -232,20 +232,19 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
   * Navigate to 
     * Navigate to Configuration -> Datasources & Drivers
     * Add Data Source (not the XA)
+<img src="media/AddDataSource.png" width=300 align=centre>
       * Give the JNDI Name as:
         java:jboss/datasources/postgresDS
+<img src="media/JDBCJNDIName.png" width=300 align=centre>
       * Select the PostgreSQL Driver (Downloaded above)
+<img src="media/JDBCDriverSelection.png" width=300 align=centre>
       * Set the connection URL to 
         jdbc:postgresql://localhost:5432/postgres
       * Set the Username to postgres
       * Set the password as set previously (e.g. Demopass1234567)
-    * Test the connection is successful, review and deploy
-
-<img src="media/AddDataSource.png" width=300 align=centre>
-<img src="media/JDBCJNDIName.png" width=300 align=centre>
-<img src="media/JDBCDriverSelection.png" width=300 align=centre>
 <img src="media/PostgreSQLConnectionString.png" width=300 align=centre>
-<img src="media/ConnectionTest.png)" width=300 align=centre>
+    * Test the connection is successful, review and deploy
+<img src="media/ConnectionTest.png" width=300 align=centre>
 
   * Reload WildFly
     * Navigate to Runtime
