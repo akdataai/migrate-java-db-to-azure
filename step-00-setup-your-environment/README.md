@@ -50,6 +50,8 @@ Within your Azure subscription the Bicep template within this repository can be 
       * As part of the installation select the option to set the JAVA_HOME
         * The step above will set the environment variable `JAVA_HOME` to the path of `javac` for this JDK installation.
   
+  ![JDK Installation](media/AzulZuluJDKInstallation.png)
+  
     * Azure CLI
     * Copy the link [here](https://aka.ms/installazurecliwindows) and paste into your lab browser to download directly 
    
@@ -61,6 +63,8 @@ Within your Azure subscription the Bicep template within this repository can be 
       * Download and unpack to c:\maven
       * Edit the System Environment Variables and set the PATH to reference the Maven Installation
         * c:\maven\apache-maven-3.8.4\bin
+  
+    ![System Environment Parameters](media/SystemEnvironmentVariables.png)
     
     * PostgreSQL Database tools (Optional):
       * [PostgreSQL CLI](https://www.postgresql.org/docs/current/app-psql.html)

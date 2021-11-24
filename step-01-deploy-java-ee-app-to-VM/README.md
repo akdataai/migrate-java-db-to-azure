@@ -228,6 +228,8 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
     * Choose the PostgreSQL JDBC driver downloaded above
     * Accept the Name and Finish
   
+   ![Add JDBC postgresql-42.3.1.jar Deployment](media/UploadPostgreSQLJar.png)
+
   * Navigate to 
     * Navigate to Configuration -> Datasources & Drivers
     * Add Data Source (not the XA)
@@ -240,6 +242,17 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
       * Set the password as set previously (e.g. Demopass1234567)
     * Test the connection is successful, review and deploy
 
+![Add PostgreSQL Datasource](media/AddDataSource.png)
+![Configure JNDI Name](media/JDBCJNDIName.png)
+![Select PostgreSQL postgresql-42.3.1.jar Driver](media/JDBCDriverSelection.png)
+![Configure PostgreSQL Connection](media/PostgreSQLConnectionString.png)
+![Test PostgreSQL Connection](media/ConnectionTest.png)
+
+  * Reload WildFly
+    * Navigate to Runtime
+    * Select the Server petstorevm
+    * Select reload
+
 # Package Pet Store application to deploy
   * Launch Git Bash session
   * Navigate to the git package
@@ -248,7 +261,7 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
   ```
   * Copy the PostgreSQL persistence file to the META-INF folder for deployment
   ```bash
-  cp migrate-javaee-app-to-azure-training/.scripts/persistence-postgresql.xml ../src/main/resources/META-INF/persistence.xml
+  cp .scripts/persistence-postgresql.xml ./src/main/resources/META-INF/persistence.xml
   ```
   * Build the Pet Store WAR file using Maven for deployment
   ```bash
@@ -268,6 +281,8 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
   * Select the application Petstore.war
     * c:\git\migrate-javaee-app-to-azure-training\target\applicationPetstore.war
   * Select next through to deploy
+
+![Deploy Pet Store WAR](media/DeployPetstoreJar.png)
 
 # In browser test the application is running:
   * Using Edge navigate to 
