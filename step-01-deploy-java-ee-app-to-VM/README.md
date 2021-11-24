@@ -225,7 +225,7 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
 
   * Create the PostgreSQL Data Source
     * Navigate to Deployments 
-    * Choose the PostgreSQL JDBC driver downloaded above
+    * Select the PostgreSQL JDBC driver file (postgresql-42.3.1.jar)
     * Accept the Name and Finish
 <img src="media/UploadPostgreSQLJar.png" width=300 align=centre>
 
@@ -241,11 +241,11 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
       * Set the password as set previously (e.g. Demopass1234567)
     * Test the connection is successful, review and deploy
 
-![Add PostgreSQL Datasource](media/AddDataSource.png){:height="50%" width="50%"}
-![Configure JNDI Name](media/JDBCJNDIName.png){:height="50%" width="50%"}
-![Select PostgreSQL postgresql-42.3.1.jar Driver](media/JDBCDriverSelection.png){:height="50%" width="50%"}
-![Configure PostgreSQL Connection](media/PostgreSQLConnectionString.png){:height="50%" width="50%"}
-![Test PostgreSQL Connection](media/ConnectionTest.png){:height="50%" width="50%"}
+<img src="media/AddDataSource.png" width=300 align=centre>
+<img src="media/JDBCJNDIName.png" width=300 align=centre>
+<img src="media/JDBCDriverSelection.png" width=300 align=centre>
+<img src="media/PostgreSQLConnectionString.png" width=300 align=centre>
+<img src="media/ConnectionTest.png)" width=300 align=centre>
 
   * Reload WildFly
     * Navigate to Runtime
