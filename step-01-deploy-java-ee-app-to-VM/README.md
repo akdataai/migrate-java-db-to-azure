@@ -74,16 +74,28 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
   * Install PostgreSQL 12
     ```bash
     sudo yum -y install https://download.postgresql.org/pub/repos/yum/reporpms/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm
-    sudo dnf -qy module disable postgresql
-    sudo dnf module enable postgresql:12
-    sudo dnf -y install postgresql12 postgresql12-server
-    sudo dnf -y install postgresql-contrib
+    ```
     ```bash
+    sudo dnf -qy module disable postgresql
+    ```
+    ```bash
+    sudo dnf module enable postgresql:12
+    ```
+    ```bash
+    sudo dnf -y install postgresql12 postgresql12-server
+    ```
+    ```bash
+    sudo dnf -y install postgresql-contrib
+    ```
   
   * Initialise PostgreSQL 
     ```bash
     sudo postgresql-setup --initdb
+    ```
+    ```bash
     sudo systemctl start postgresql
+    ```
+    ```bash
     sudo systemctl enable postgresql
     ```
 
