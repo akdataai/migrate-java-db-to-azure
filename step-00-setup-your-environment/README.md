@@ -81,7 +81,7 @@ Within your Azure subscription the Bicep template within this repository can be 
       ```bash
       mkdir /c/git/
       cd /c/git
-      git clone https://github.com/Azure-Samples/migrate-javaee-app-to-azure-training.git
+      git clone https://github.com/akdataai/migrate-java-db-to-azure.git
       ````
     
     * Download and install Putty MSI
