@@ -60,8 +60,7 @@ The startup script calls the persistence.xml and postgresql-datasource-commands.
 * Edit the pom.xml file for the Maven Deployment into Azure App Service
 Maven uses the pom.xml file to build the deployment and artifacts.
 
-For the Azure App Service Deployment we need to include the Azure postgresql resources
-
+  * For the Azure App Service Deployment we need to include the Azure postgresql resources
 	```bash
 	vi ./pom.xml
 	```
