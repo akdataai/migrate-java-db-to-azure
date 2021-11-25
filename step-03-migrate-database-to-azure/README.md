@@ -85,7 +85,7 @@ Following the schema creation in Azure PostgreSQL continue to build the migratio
             1005 | 1923-04-12    | han@solo.com         | Han        | Black Star |       | 543 Sun Set Boulevard |         | 9999     | Solo      | han    | wQaIooUS4VUGRcaf3xPnq2t07YcJS74B8o6IZJC3Ajk= |      | +1 786 1212 987  |      |
             1 |       1238
             (6 rows)
-        ```
+      ```
 ⬅️ Previous guide: [02 - Create Azure Database for PostgreSQL ](../step-02-migrate-database-to-azure/README.md)
   
 ➡️ Next guide: [03 - Migrate on-premises application to Azure](../step-04-migrate-application-to-azure/README.md)
