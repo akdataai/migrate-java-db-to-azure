@@ -53,6 +53,11 @@ vi .scripts/setup-env-variables.sh
 	#IPCONFIG
 	export DEVBOX_IP_ADDRESS=$(curl ifconfig.me)
 ```
+* Source the environment variables:
+```bash
+cd /c/git/migrate-javaee-app-to-azure-training/
+source .scripts/setup-env-variables.sh
+```
 
 ## Create and configure Petstore database in Azure Database for PostgreSQL
   
