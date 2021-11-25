@@ -25,8 +25,9 @@ Within the Azure Database Migration Service
       * Leave the migration activity type as "Online data migration"
 
     * Note in order to migrate data first the schema definition must exist in the Azure PostgreSQL database. 
-    * The Database Migration Service provides the instruction to do this using a PostgreSQL tool pg_dump to export the Database objects into a script
-    * The output of pg_dump can be run into Azure Database for PostgreSQL to build the schema
+      * The Database Migration Service provides the instruction to do this using a PostgreSQL tool pg_dump to export the Database objects into a script
+      * The output of pg_dump can be run into Azure Database for PostgreSQL to build the schema
+      
       * Export local Postgres schema into Azure Postgres
         ```bash
         # pg_dump -h 10.0.1.4 -U postgres -d postgres -s > petstore_schema.sql
@@ -46,18 +47,19 @@ Following the schema creation in Azure PostgreSQL continue to build the migratio
     * Select the database to migrate
     * Select the tables to migrate
     * Continue through the starting the activity
-        Note. the Migration might fail if the parameter "wal_level" is not set the logical. 
+
+        * Note. the Migration might fail if the parameter "wal_level" is not set the logical. 
             wal_level determines how much information is written to the WAL. The default value is replica, which writes enough data to support WAL archiving and replication, including running read-only queries on a standby server. minimal removes all logging except the information required to recover from a crash or immediate shutdown. Finally, logical adds information necessary to support logical decoding. Each level includes the information logged at all lower levels. This parameter can only be set at server start.
 
-            * Set the local Postgres WAL to logical and restart Postgres:
+          * Set the local Postgres WAL to logical and restart Postgres:
             ```bash
             postgres=# ALTER SYSTEM SET wal_level = logical;
             ```
-            * Restart the PostgreSQL service
+          * Restart the PostgreSQL service
             ```bash
             sudo systemctl restart postgresql
             ```
-            * Restart the Migration project job
+          * Restart the Migration project job
     
   * Check migration job is successful and data has migrated into Azure Postgres
       ```bash
