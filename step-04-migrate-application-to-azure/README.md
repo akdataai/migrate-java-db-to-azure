@@ -30,22 +30,26 @@ set the subscription via
 # Configure application to deploy to Azure App Service
 In this section amend two deployment configuration files to cater for a database migration, not a full redeploy and re-seed of Azure Database for PostgreSQL
 
-Amend the persistence.xml to prevent the deployment dropping and recreating tables in Azure Postgres
-```bash
-vi src/main/resources/META-INF/persistence.xml
-```
-	Remove the lines
-	      <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
-	      <property name="javax.persistence.sql-load-script-source" value="init_db.sql"/>
-	
-Amend the Azure Postgres datasource parameters, as follows, to reflect the correct JDBC connection string for Azure Database for PostgreSQL
-    Note. The connection string is built from $POSTGRES_CONNECTION_URL that is defined in the environment parameters script modified earlier.
-    In a later step the $POSTGRES_CONNECTION_URL will be passed to Azure App Service to embed within the startup
-```bash    
-vi .scripts/3A-postgresql/postgresql-datasource-commands.cli
-```
-	Replace the data-source line:
+* Amend the persistence.xml to prevent the deployment dropping and recreating tables in Azure Postgres
+	```bash
+	vi src/main/resources/META-INF/persistence.xml
+	```
+		Remove the lines
+			<property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
+			<property name="javax.persistence.sql-load-script-source" value="init_db.sql"/>
+		
+* Amend the Azure Postgres datasource parameters within the ".scripts/3A-postgresql/postgresql-datasource-commands.cli" file
+	The data-source originally in the file is not compatible to establish a connection with Azure Database for PostgreSQL Flexible Server
+
+	```bash    
+	vi .scripts/3A-postgresql/postgresql-datasource-commands.cli
+	```
+	* Delete the data-source line
+	* Replace with the data-source string below.
+
+	```bash
 	data-source add --name=postgresDS --driver-name=postgres --jndi-name=java:jboss/datasources/postgresDS --connection-url=${POSTGRES_CONNECTION_URL,env.POSTGRES_CONNECTION_URL:jdbc:postgresql://db:5432/postgres} --use-ccm=true --max-pool-size=5 --blocking-timeout-wait-millis=5000 --enabled=true --driver-class=org.postgresql.Driver --exception-sorter-class-name=org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLExceptionSorter --jta=true --use-java-context=true --valid-connection-checker-class-name=org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLValidConnectionChecker
+	```
 
 Amend the pom.xml to include the Azure postgresql resources for Azure App Service deployment
 $ vi pom.xml
