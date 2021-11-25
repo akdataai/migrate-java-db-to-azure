@@ -77,7 +77,7 @@ Within your Azure subscription the Bicep template within this repository can be 
 * Login to "oss-hack-rdp" 
   * The training lab requires the following to be installed on your development machine or deployed Azure Remote Desktop:
     * Install Edge Browser
-      * direct download link [here]https://go.microsoft.com/fwlink/?linkid=2108834&Channel=Stable&language=en
+      * direct download link [here](https://go.microsoft.com/fwlink/?linkid=2108834&Channel=Stable&language=en)
   
     * JDK 1.8
     *  Direct download link [here](https://cdn.azul.com/zulu/bin/zulu8.58.0.13-ca-jdk8.0.312-win_x64.msi)
