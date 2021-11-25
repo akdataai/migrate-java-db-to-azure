@@ -3,16 +3,16 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "resourceGroupName": {
-            "value": "prod"
+            "value": "oss-hack"
         },
         "namePrefix": {
-            "value": "prod"
+            "value": "oss-hack"
         },
         "vmUsername": {
-            "value": "test_username"
+            "value": "azureadmin"
         },
         "vmPassword": {
-            "value": "$1test_password"
+            "value": "Demo@pass1234567"
         }
     }
 }

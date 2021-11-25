@@ -61,11 +61,6 @@ Within your Azure subscription the Bicep template within this repository can be 
       * Navigate to the resource group and to the Deployments pane
         <img src="media/BicepDeployment.png" width=500 align=centre>   
 * Following the successful Bicep deployment
-    * Create a Network Security Group upon the PgSubnet with the following inbound rules
-      * SSH - 22
-      * WildFly Admin - 9990
-      * Pet Store Application - 8080
-      * PostgreSQL - 5432
     * Create an Azure Bastion to connect to "oss-hack-rdp"
       * Navigate to the VM
       * Select Connect and choose Bastion
