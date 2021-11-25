@@ -86,7 +86,7 @@ Following the schema creation in Azure PostgreSQL continue to build the migratio
             1 |       1238
             (6 rows)
       ```
-⬅️ Previous guide: [02 - Create Azure Database for PostgreSQL ](../step-02-migrate-database-to-azure/README.md)
+⬅️ Previous guide: [02 - Create Azure Database for PostgreSQL ](../step-02-create-azure-postgresql-database/README.md)
   
 ➡️ Next guide: [03 - Migrate on-premises application to Azure](../step-04-migrate-application-to-azure/README.md)
 
