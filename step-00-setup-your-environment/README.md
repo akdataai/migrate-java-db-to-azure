@@ -16,14 +16,51 @@ Within your Azure subscription the Bicep template within this repository can be 
 
 * To deploy the bicep template use Azure Cloud Shell 
     * Create an Azure Resource Group to deploy into (e.g. oss-hack)
-    * Upload the package to your Azure Cloud subscription (Change to Bash Shell...)
-    * Unpack the OSS-App-DB-Bicep.zip
-    * Navigate to the unpacked folder
-    * Edit "./parameters/parameters.json" to reflect the resource group to deploy into
-    * Run the Bicep template to deploy
+    * Using Azure CLI (bash) create a folder called git
+          ```bash
+          mkdir git
+          ```
+    * Clone the git repo for this lab
+        ```bash
+          cd git
+          git clone https://github.com/akdataai/migrate-java-db-to-azure.git
+          ````
+    * Navigate to the bicep folder 
+        ```bash
+        cd .scripts/bicep-vm/
+        ```
+    * Edit "./parameters/parameters.json" to reflect the resource group to deploy into and providing the login user and password for the VMs
+        ```bash
+        vi ./parameters/parameters.json
+        ```
+        ```text
+          {
+              "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+              "contentVersion": "1.0.0.0",
+              "parameters": {
+                  "resourceGroupName": {
+                      "value": "oss-hack"
+                  },
+                  "namePrefix": {
+                      "value": "oss"
+                  },
+                  "vmUsername": {
+                      "value": "adminuser"
+                  },
+                  "vmPassword": {
+                      "value": "Demo"pass1234567"
+                  }
+              }
+          }
+        ````
+    * Run the Bicep template to deploy - specify the resource group name (-g resourceGroup)
         ```bash
         az deployment group create --template-file ./main.bicep  --parameters ./parameters/parameters.json -g "oss-hack"
         ```
+    * The deployment progress can be checked using the Azure Portal
+      * Navigate to the resource group and to the Deployments pane
+        <img src="media/BicepDeployment.png" width=500 align=centre>   
+
 
 * Following deployment
     * Validate the Bicep deployment has completed successfully
