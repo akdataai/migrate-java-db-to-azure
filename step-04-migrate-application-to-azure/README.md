@@ -115,7 +115,8 @@ Maven uses the pom.xml file to build the deployment and artifacts.
   * Accept the defaults for the app service plan
   * Confirm the settings
   
-<img src="media/../MavenAppServiceConfigPom.png" width=500 align=centre>
+<img src="media/MavenAppServiceConfigPom.png" width=500 align=centre>
+<img src="media/MavenAppServiceConfigPomUpdate.png" width=500 align=centre>
 
 * Once complete the pom.xml will be updated to include Azure App Service plugin
 	
