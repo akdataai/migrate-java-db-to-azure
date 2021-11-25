@@ -29,17 +29,17 @@ To use the Azure Database Migration Service
 
 # Setup Azure Database Migration Project
 Within the Azure Database Migration Service
-    * Create a new Migration Project for PostgreSQL
-      * Provide the project a name
-      * Set the source server type as PostgreSQL
-      * Set the target server type as Azure Database for PostgreSQL
-      * Leave the migration activity type as "Online data migration"
+  * Create a new Migration Project for PostgreSQL
+    * Provide the project a name
+    * Set the source server type as PostgreSQL
+    * Set the target server type as Azure Database for PostgreSQL
+    * Leave the migration activity type as "Online data migration"
 
     * Note in order to migrate data first the schema definition must exist in the Azure PostgreSQL database. 
       * The Database Migration Service provides the instruction to do this using a PostgreSQL tool pg_dump to export the Database objects into a script
-      * The output of pg_dump can be run into Azure Database for PostgreSQL to build the schema
-      
+      * The output script must then be run into Azure Database for PostgreSQL to create the schema
       * Export local Postgres schema into Azure Postgres
+        
         ```bash
         # pg_dump -h 10.0.1.4 -U postgres -d postgres -s > petstore_schema.sql
         ```
