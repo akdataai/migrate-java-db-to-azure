@@ -55,7 +55,6 @@ vi .scripts/setup-env-variables.sh
 ```
 * Source the environment variables:
 ```bash
-cd /c/git/migrate-javaee-app-to-azure-training/
 source .scripts/setup-env-variables.sh
 ```
 
