@@ -33,7 +33,7 @@ The first is the persistence.xml and the second is the postgresql-datasource-com
 
 These two files are uploaded as artifacts to Azure App Service, alongside the war file and a startup script.
 The startup script is called by Azure App Service on any startup
-The startup script calls upon the persistence.xml and postgresql-datasource-commands.cli to establis the connection with Azure Database for PostgreSQL 
+The startup script calls the persistence.xml and postgresql-datasource-commands.cli to establish the connection with Azure Database for PostgreSQL 
 
 * Amend the persistence.xml to prevent the deployment dropping and recreating tables in Azure Postgres
 	```bash
