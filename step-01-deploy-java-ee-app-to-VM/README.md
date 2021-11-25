@@ -71,7 +71,9 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
   * Check the WildFly service is running on port 8080
     ```bash
     ss -tunelp | grep 8080
-    	tcp   LISTEN 0      128          0.0.0.0:8080      0.0.0.0:*    users:(("java",pid=79152,fd=483)) uid:991 ino:358878 sk:10 <-> 
+    ```
+    ```text	
+      tcp   LISTEN 0      128          0.0.0.0:8080      0.0.0.0:*    users:(("java",pid=79152,fd=483)) uid:991 ino:358878 sk:10 <-> 
     ```
     
   * Add a WildFly Management User for the portal (example is below)
