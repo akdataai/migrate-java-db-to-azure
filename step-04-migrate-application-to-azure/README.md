@@ -117,7 +117,7 @@ Maven uses the pom.xml file to build the deployment and artifacts.
   
 <img src="media/../MavenAppServiceConfigPom.png" width=500 align=centre>
 
-	Once complete the pom.xml will be updated to include Azure App Service plugin
+* Once complete the pom.xml will be updated to include Azure App Service plugin
 	
 	```xml    
 	<plugins> 
@@ -161,53 +161,58 @@ Maven uses the pom.xml file to build the deployment and artifacts.
 Using Maven you can build and deploy the petstore application into Azure App Service
 The deployment process will include creating an Azure App Service Plan and JBOSS Linux Web Application Service within the subscription and resource group defined in the setup-env-variables.sh
 
-```bash
-mvn package -Dmaven.test.skip=true -Ddb=postgresql
-mvn azure-webapp:deploy
-```
-Set the Azure App Service with the JDBC PostgreSQL connection parameters to Azure Database for Postgres
-```bash
-az webapp config appsettings set \
-    --resource-group ${RESOURCE_GROUP} --name ${WEBAPP} \
-    --settings \
-    POSTGRES_CONNECTION_URL=${POSTGRES_CONNECTION_URL}
-```
+* Build the Petstore Application Package with the PostgreSQL database artifacts
+	```bash
+	mvn package -Dmaven.test.skip=true -Ddb=postgresql
+	mvn azure-webapp:deploy
+	```
 
-Ensure the correct connection URL, Username and Password is returned:
-[
-  {
-    "name": "POSTGRES_CONNECTION_URL",
-    "slotSetting": false,
-    "value": "jdbc:postgresql://petstoredb.postgres.database.azure.com:5432/postgres?user=pgdba&password=Demopass1234567&sslmode=require"
-  }
-]
+	```text
+	[INFO] Scanning for projects...
+	[INFO] 
+	[INFO] ------------------------------------------------------------------------
+	[INFO] Building Petstore application using Java EE 7 7.0
+	[INFO] ------------------------------------------------------------------------
+	[INFO] 
+	[INFO] --- azure-webapp-maven-plugin:1.16.1:deploy (default-cli) @ petstoreee7 ---
+	...
+	[INFO] Target Web App doesn't exist. Creating a new one...
+	[INFO] Creating App Service Plan 'ServicePlan96b599bb-a053-4ea6'...
+	[INFO] Successfully created App Service Plan.
+	[INFO] Successfully created Web App.
+	[INFO] Using 'UTF-8' encoding to copy filtered resources.
+	[INFO] Copying 1 resource to /Users/selvasingh/GitHub/selvasingh/migrate-javaee-app-to-azure/target/azure-webapp/seattle-petstore-3596b742-2cf2-4713-b7a4-b88694754bad
+	[INFO] Trying to deploy artifact to seattle-petstore...
+	[INFO] Deploying the war file applicationPetstore.war...
+	[INFO] Successfully deployed the artifact to https://seattle-petstore.azurewebsites.net
+	[INFO] ------------------------------------------------------------------------
+	[INFO] BUILD SUCCESS
+	[INFO] ------------------------------------------------------------------------
+	[INFO] Total time: 02:34 min
+	[INFO] Finished at: 2020-12-29T20:58:59-08:00
+	[INFO] Final Memory: 56M/790M
+	[INFO] ------------------------------------------------------------------------
+	```
 
-```text
-[INFO] Scanning for projects...
-[INFO] 
-[INFO] ------------------------------------------------------------------------
-[INFO] Building Petstore application using Java EE 7 7.0
-[INFO] ------------------------------------------------------------------------
-[INFO] 
-[INFO] --- azure-webapp-maven-plugin:1.16.1:deploy (default-cli) @ petstoreee7 ---
-...
-[INFO] Target Web App doesn't exist. Creating a new one...
-[INFO] Creating App Service Plan 'ServicePlan96b599bb-a053-4ea6'...
-[INFO] Successfully created App Service Plan.
-[INFO] Successfully created Web App.
-[INFO] Using 'UTF-8' encoding to copy filtered resources.
-[INFO] Copying 1 resource to /Users/selvasingh/GitHub/selvasingh/migrate-javaee-app-to-azure/target/azure-webapp/seattle-petstore-3596b742-2cf2-4713-b7a4-b88694754bad
-[INFO] Trying to deploy artifact to seattle-petstore...
-[INFO] Deploying the war file applicationPetstore.war...
-[INFO] Successfully deployed the artifact to https://seattle-petstore.azurewebsites.net
-[INFO] ------------------------------------------------------------------------
-[INFO] BUILD SUCCESS
-[INFO] ------------------------------------------------------------------------
-[INFO] Total time: 02:34 min
-[INFO] Finished at: 2020-12-29T20:58:59-08:00
-[INFO] Final Memory: 56M/790M
-[INFO] ------------------------------------------------------------------------
-```
+* Configure Azure App Service with the JDBC PostgreSQL connection parameters to Azure Database for Postgres
+	```bash
+	az webapp config appsettings set \
+		--resource-group ${RESOURCE_GROUP} --name ${WEBAPP} \
+		--settings \
+		POSTGRES_CONNECTION_URL=${POSTGRES_CONNECTION_URL}
+	```
+
+	Ensure the correct connection URL, Username and Password is returned
+	```text
+	[
+	{
+		"name": "POSTGRES_CONNECTION_URL",
+		"slotSetting": false,
+		"value": "jdbc:postgresql://petstoredb.postgres.database.azure.com:5432/postgres?user=pgdba&password=Demopass1234567&sslmode=require"
+	}
+	]
+	```
+
 
 ## Open Java EE application running on JBoss EAP in App Service Linux
 
