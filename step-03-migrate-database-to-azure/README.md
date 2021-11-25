@@ -21,9 +21,9 @@ To use the Azure Database Migration Service
       * Choose the "Location" to be the same as your Azure Resource Group and Resources
       * Change the "Pricing tier" to Premium 
           Note. Standard tier does not provide online migration capabilities
-        <img src="media/AzureDatabaseMigrationServiceTier.png" width=500 align=centre>
+      <img src="media/AzureDatabaseMigrationServiceTier.png" width=500 align=centre>
     * Select Next to move onto the Networking settings
-        <img src="media/CreateMigrationServiceBasics.png" width=500 align=centre>
+      <img src="media/CreateMigrationServiceBasics.png" width=500 align=centre>
     * Deploy the Migration Service into the on-premises PgSubnet virtual network
       <img src="media/AzureMigrationServiceNetworking.png" width=500 align=centre>
     * Accept the defaults for the remaining options and deploy
@@ -49,7 +49,7 @@ Within the Azure Database Migration Service
           * The connection string for the Azure PostgreSQL database can be found on the Azure Portal
           * Navigate to the Azure PostgreSQL database within your Resource Group
           * Navigate to the Connection Strings pane
-          <img src="media/AzureMigrationServiceNetworking.png" width=500 align=centre>
+            <img src="media/AzureMigrationServiceNetworking.png" width=500 align=centre>
           * Copy the "psql" string
           * Paste into Putty and replace the dbname, user and password to match your Azure PostgreSQL Database details
           * Test the psql connection is successful
