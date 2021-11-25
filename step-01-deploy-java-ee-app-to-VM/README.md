@@ -237,6 +237,12 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
 <img src="media/SelectPostgreSQLJar.png" width=500 align=centre>
 <img src="media/ConfirmJarDeployment.png" width=500 align=centre>
 
+  * When prompted reload WildFly
+    * If there is no prompt reload manually in the console
+      * Navigate to Runtime
+      * Select the Server petstorevm
+      * Select reload
+  
   * Navigate to 
     * Navigate to Configuration -> Datasources & Drivers
     * Add Data Source (not the XA)
@@ -254,10 +260,11 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
     * Test the connection is successful, review and deploy
 <img src="media/ConnectionTest.png" width=500 align=centre>
 
-  * Reload WildFly
-    * Navigate to Runtime
-    * Select the Server petstorevm
-    * Select reload
+  * When prompted reload WildFly
+    * If there is no prompt reload manually in the console
+      * Navigate to Runtime
+      * Select the Server petstorevm
+      * Select reload
 
 # Package Pet Store application to deploy
   * Launch Git Bash session
