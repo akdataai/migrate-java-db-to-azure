@@ -62,8 +62,7 @@ Within your Azure subscription the Bicep template within this repository can be 
         <img src="media/BicepDeployment.png" width=500 align=centre>   
 
 
-* Following deployment
-    * Validate the Bicep deployment has completed successfully
+* Following the successful Bicep deployment
     * Create a Network Security Group upon the PgSubnet with the following inbound rules
       * SSH - 22
       * WildFly Admin - 9990
