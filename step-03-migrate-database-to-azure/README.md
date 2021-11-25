@@ -21,8 +21,9 @@ To use the Azure Database Migration Service
       * Choose the "Location" to be the same as your Azure Resource Group and Resources
       * Change the "Pricing tier" to Premium 
           Note. Standard tier does not provide online migration capabilities
-        <img src="media/CreateMigrationServiceBasics.png" width=500 align=centre>
+        <img src="media/AzureDatabaseMigrationServiceTier.png" width=500 align=centre>
     * Select Next to move onto the Networking settings
+        <img src="media/CreateMigrationServiceBasics.png" width=500 align=centre>
     * Deploy the Migration Service into the on-premises PgSubnet virtual network
       <img src="media/AzureMigrationServiceNetworking.png" width=500 align=centre>
     * Accept the defaults for the remaining options and deploy
@@ -38,14 +39,24 @@ Within the Azure Database Migration Service
     * Note in order to migrate data first the schema definition must exist in the Azure PostgreSQL database. 
       * The Database Migration Service provides the instruction to do this using a PostgreSQL tool pg_dump to export the Database objects into a script
       * The output script must then be run into Azure Database for PostgreSQL to create the schema
+      
+      * From the RDP and "oss-vm-pgsql" Putty session
       * Export local Postgres schema into Azure Postgres
-        
         ```bash
         pg_dump -h 10.0.1.4 -U postgres -d postgres -s > petstore_schema.sql
         ```
       * Import into Azure Database for Postgres
+          * The connection string for the Azure PostgreSQL database can be found on the Azure Portal
+          * Navigate to the Azure PostgreSQL database within your Resource Group
+          * Navigate to the Connection Strings pane
+          <img src="media/AzureMigrationServiceNetworking.png" width=500 align=centre>
+          * Copy the "psql" string
+          * Paste into Putty and replace the dbname, user and password to match your Azure PostgreSQL Database details
+          * Test the psql connection is successful
+          * Quit psql
+          * Run psql this time inputting the petstore_schema.sql file generated from our on-premises database
         ```bash
-        psql "host=petstoredb.postgres.database.azure.com port=5432 dbname=postgres user=pgdba password=Demopass1234567 sslmode=require" < petstore_schema.sql
+        psql "host=petstoredb-ak.postgres.database.azure.com port=5432 dbname=postgres user=pgdba password=Demopass1234567 sslmode=require" < petstore_schema.sql
         ```
 
 # Create Azure Database Migration Service Migration Project
