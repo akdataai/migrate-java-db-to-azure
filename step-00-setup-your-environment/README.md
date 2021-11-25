@@ -106,10 +106,11 @@ Within your Azure subscription the Bicep template within this repository can be 
     
     * The [`jq` utility](https://stedolan.github.io/jq/download/). 
         * Direct download link [here](https://github.com/stedolan/jq/releases/download/jq-1.6/jq-win64.exe)
-        * Download to c:\jq
-      * Launch GitBash and edit the the `~/.bashrc` file to point to jq: 
+        * Move the downloaded jq executable (jq-win64.exe) to the folder c:\jq
+      * Launch Git Bash
+        * Add an entry into the `~/.bashrc` file to set a launch alias for jq: 
        ```bash
-      alias jq=/c/jq/jq-win64.exe
+      echo "alias jq=/c/jq/jq-win64.exe" > ~/.bashrc
       ```
       * Call the .bashrc file to source jq
       ```bash
