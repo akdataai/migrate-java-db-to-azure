@@ -38,10 +38,10 @@ Within the Azure Database Migration Service
 
 # Create Azure Database Migration Service Migration Project
 Following the schema creation in Azure PostgreSQL continue to build the migration project
-    * Configure the source server name 
-        Note. the VM IP address should be used here
-      * Provide the port, database, username and password
-      * As the on-premises PostgreSQL instance is not using SSL deselect the Encrypt connection option
+  * Configure the source server name 
+      Note. the VM IP address should be used here
+  * Provide the port, database, username and password
+    * As the on-premises PostgreSQL instance is not using SSL deselect the Encrypt connection option
     * Continue to configure the target Azure Database for PostgreSQL 
     * Select the database to migrate
     * Select the tables to migrate
@@ -59,13 +59,13 @@ Following the schema creation in Azure PostgreSQL continue to build the migratio
             ```
             * Restart the Migration project job
     
-    * Check migration job is successful and data has migrated into Azure Postgres
-        ```bash
-        psql "host=petstoredb.postgres.database.azure.com port=5432 dbname=postgres user=pgdba password=Demopass1234567 sslmode=require"
-        ```
+  * Check migration job is successful and data has migrated into Azure Postgres
+      ```bash
+      psql "host=petstoredb.postgres.database.azure.com port=5432 dbname=postgres user=pgdba password=Demopass1234567 sslmode=require"
+      ```
         
-        ```bash
-        postgres=> select * from customer;
+      ```bash
+      postgres=> select * from customer;
             id  | date_of_birth |        email         | first_name |    city    | state |        street1        | street2 | zip_code | last_name | login  |                   password                   | role |    telephone     | uuid | vers
             ion | country_id
             ------+---------------+----------------------+------------+------------+-------+-----------------------+---------+----------+-----------+--------+----------------------------------------------+------+------------------+------+-----
