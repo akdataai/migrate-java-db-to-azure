@@ -12,12 +12,21 @@ particularly Azure Resource Group and Web app names. Then, you can
 export them to your local environment. 
 
 * Using Git Bash create `.scripts/setup-env-variables.sh` using the contents below.
-  * Amend the Azure Environment section only to set the Azure Resource Group name
-  * Web app name (e.g. petstore-<your initials>)
-  * Azure Region
-  * Azure PostgreSQL Database name
-  * PostgreSQL Admin User Name  
-  * PostgreSQL Admin User Password
+* Amend the Azure Environment section only to set the Azure Resource Group name
+  * SUBSCRIPTION
+        Your Azure Subscription ID
+  * RESOURCE_GROUP 
+        Name of your Azure Resource Group
+  * WEBAPP 
+        Name of our Azure Web App(e.g. petstore-<your initials>)
+  * REGION 
+        Resource group location
+  * DATABASE_SERVER 
+        Azure PostgreSQL Database name
+  * DATABASE_ADMIN 
+        PostgreSQL Admin User Name  
+  * DATABASE_ADMIN_PASSWORD
+        PostgreSQL Admin User Password
 
 ```bash 
 vi .scripts/setup-env-variables.sh
@@ -31,7 +40,7 @@ vi .scripts/setup-env-variables.sh
 	export WEBAPP=petstore-ak-eastus # customize this - say, seattle-petstore
 	export REGION=eastus
 	
-	export DATABASE_SERVER=petstoredb
+	export DATABASE_SERVER=petstoredb-ak
 	export DATABASE_ADMIN=pgdba # customize this
 	export DATABASE_ADMIN_PASSWORD=Demopass1234567 # customize this
 	
@@ -64,16 +73,23 @@ source .scripts/setup-env-variables.sh
 ```
 
 ## Create and configure Petstore database in Azure Database for PostgreSQL
-  
+
+* Within Git Bash using Azure CLI login to Azure
+* Git Bash will prompt to login using the browser
+* Select the link and complete the Azure authentication process
+
+```bash
+az login
+```
+
 * Create a Pet Store database using Azure CLI and PostgreSQL CLI:
-  
 ```bash
 az postgres flexible-server create --resource-group oss-hack \
 --name ${DATABASE_SERVER} \
 --resource-group ${RESOURCE_GROUP} \
 --admin-user ${DATABASE_ADMIN} \
 --admin-password ${DATABASE_ADMIN_PASSWORD} \
---sku-name Standard_B1ms \
+--sku-name Standard_D4s_v3 \
 --tier Burstable \
 --public-access all
 ```
