@@ -70,24 +70,24 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
 	    sudo chown -R wildfly:wildfly /opt/wildfly
 	    ```
   * Reload the Services Daemon and Start WildFly as a service
-	    ```bash
-	    sudo systemctl daemon-reload
-	    ```
-	    ```bash
-	    sudo restorecon -Rv /opt/wildfly/bin/
-	    ```
-	    ```bash
-	    setenforce 0
-	    ```
-	    ```bash
-	    sudo systemctl start wildfly
-	    ```
-	    ```bash
-	    sudo systemctl enable wildfly
-	    ```
-	    ```bash
-	    systemctl status wildfly
-	    ```
+      ```bash
+      sudo systemctl daemon-reload
+      ```
+      ```bash
+      sudo restorecon -Rv /opt/wildfly/bin/
+      ```
+      ```bash
+      setenforce 0
+      ```
+      ```bash
+      sudo systemctl start wildfly
+      ```
+      ```bash
+      sudo systemctl enable wildfly
+      ```
+      ```bash
+      systemctl status wildfly
+      ```
   * Check the WildFly service is running on port 8080
     ```bash
     ss -tunelp | grep 8080
