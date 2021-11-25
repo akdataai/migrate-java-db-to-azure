@@ -11,8 +11,8 @@ Set environment variables for storing Azure information,
 particularly Azure Resource Group and Web app names. Then, you can 
 export them to your local environment. 
 
-* Using Git Bash create `.scripts/setup-env-variables.sh` using the contents below.
-* Amend the Azure Environment section only to set the Azure Resource Group name
+* Using Git Bash create an environment variable file using the contents below and edit the parameters as follows
+* Amend the Azure Environment setting 
   * SUBSCRIPTION
         Your Azure Subscription ID
   * RESOURCE_GROUP 
@@ -29,6 +29,7 @@ export them to your local environment.
         PostgreSQL Admin User Password
 
 ```bash 
+cd /c/git/migrate-java-db-to-azure/
 vi .scripts/setup-env-variables.sh
 ```
 ```text
