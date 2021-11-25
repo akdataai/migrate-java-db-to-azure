@@ -88,18 +88,18 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
     ```
     
   * Add a WildFly Management User for the portal
-	    * Run the script /opt/wildfly/bin/add-user.sh 
-	    * Add a Management user
-	    * Provide a username
-	    * Provide a password
-	    * Leave the groups blank
-	    * Confirm (yes) adding the user to the realm 'ManagementRealm'
-	    * Confirm (yes) for the user to connect to the master or for a remote connection
-        ```bash
-        sudo /opt/wildfly/bin/add-user.sh
-        ```
+	  * Run the script /opt/wildfly/bin/add-user.sh 
+      ```bash
+      sudo /opt/wildfly/bin/add-user.sh
+      ```
+	  * Add a Management user
+	  * Provide a username
+	  * Provide a password
+	  * Leave the groups blank
+	  * Confirm (yes) adding the user to the realm 'ManagementRealm'
+	  * Confirm (yes) for the user to connect to the master or for a remote connection
         
-        * Example run with answers
+      * Example run with answers
           ```text
               What type of user do you wish to add? 
               a) Management User (mgmt-users.properties) 
