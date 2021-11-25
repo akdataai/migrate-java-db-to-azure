@@ -41,11 +41,11 @@ Within the Azure Database Migration Service
       * Export local Postgres schema into Azure Postgres
         
         ```bash
-        # pg_dump -h 10.0.1.4 -U postgres -d postgres -s > petstore_schema.sql
+        pg_dump -h 10.0.1.4 -U postgres -d postgres -s > petstore_schema.sql
         ```
       * Import into Azure Database for Postgres
         ```bash
-        # psql "host=petstoredb.postgres.database.azure.com port=5432 dbname=postgres user=pgdba password=Demopass1234567 sslmode=require" < petstore_schema.sql
+        psql "host=petstoredb.postgres.database.azure.com port=5432 dbname=postgres user=pgdba password=Demopass1234567 sslmode=require" < petstore_schema.sql
         ```
 
 # Create Azure Database Migration Service Migration Project
