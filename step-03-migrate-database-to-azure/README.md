@@ -85,7 +85,9 @@ Following the schema creation in Azure PostgreSQL continue to build the migratio
 
     * Set the on-premises PostgreSQL wal_level parameter to logical, using psql, and restart:
       ```bash
+      psql "dbname=postgres host=10.0.1.4 user=postgres password=Demopass1234567 port=5432"
       ALTER SYSTEM SET wal_level = logical;
+      \q
       ```
     * Restart the PostgreSQL service
       ```bash
