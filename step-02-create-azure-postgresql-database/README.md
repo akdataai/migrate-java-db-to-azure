@@ -12,7 +12,12 @@ particularly Azure Resource Group and Web app names. Then, you can
 export them to your local environment. 
 
 * Using Git Bash create `.scripts/setup-env-variables.sh` using the contents below.
-Amend the Azure Environment section only to set the Azure Resource Group name, web app name (e.g. petstore-<your initials>), Azure Region, Azure PostgreSQL Database name, admin user name and password.
+  * Amend the Azure Environment section only to set the Azure Resource Group name
+  * Web app name (e.g. petstore-<your initials>)
+  * Azure Region
+  * Azure PostgreSQL Database name
+  * PostgreSQL Admin User Name  
+  * PostgreSQL Admin User Password
 
 ```bash 
 vi .scripts/setup-env-variables.sh
