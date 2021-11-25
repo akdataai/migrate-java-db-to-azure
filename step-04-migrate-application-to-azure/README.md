@@ -36,12 +36,14 @@ The startup script is called by Azure App Service on any startup
 The startup script calls the persistence.xml and postgresql-datasource-commands.cli to establish the connection with Azure Database for PostgreSQL 
 
 * Amend the persistence.xml to prevent the deployment dropping and recreating tables in Azure Postgres
+  * Edit the file "./src/main/resources/META-INF/persistence.xml"
 	```bash
 	vi src/main/resources/META-INF/persistence.xml
 	```
 		Remove the lines
 			<property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
 			<property name="javax.persistence.sql-load-script-source" value="init_db.sql"/>
+    * Save the edit
 		
 * Amend the Azure Postgres datasource parameters within the ".scripts/3A-postgresql/postgresql-datasource-commands.cli" file
 	The data-source originally in the file is not compatible to establish a connection with Azure Database for PostgreSQL Flexible Server
@@ -58,10 +60,10 @@ The startup script calls the persistence.xml and postgresql-datasource-commands.
 	```
 
 * Edit the pom.xml file for the Maven Deployment into Azure App Service
-Maven uses the pom.xml file to build the deployment and artifacts.
+Maven uses the pom.xml file to build the WAR file and record the artifacts to transfer to Azure App Service.
 
   * For the Azure App Service Deployment we need to include the Azure postgresql resources
-	* Edit the pom.xml
+	* Edit the file "pom.xml"
   		```bash
 		vi ./pom.xml
 		```
@@ -197,28 +199,31 @@ The deployment process will include creating an Azure App Service Plan and JBOSS
 
 	```text
 	[INFO] Scanning for projects...
-	[INFO] 
-	[INFO] ------------------------------------------------------------------------
+	[INFO]
+	[INFO] ----------------< org.agoncal.application:petstoreee7 >-----------------
 	[INFO] Building Petstore application using Java EE 7 7.0
-	[INFO] ------------------------------------------------------------------------
-	[INFO] 
+	[INFO] --------------------------------[ war ]---------------------------------
+	[INFO]
 	[INFO] --- azure-webapp-maven-plugin:1.16.1:deploy (default-cli) @ petstoreee7 ---
-	...
-	[INFO] Target Web App doesn't exist. Creating a new one...
-	[INFO] Creating App Service Plan 'ServicePlan96b599bb-a053-4ea6'...
-	[INFO] Successfully created App Service Plan.
-	[INFO] Successfully created Web App.
-	[INFO] Using 'UTF-8' encoding to copy filtered resources.
-	[INFO] Copying 1 resource to /Users/selvasingh/GitHub/selvasingh/migrate-javaee-app-to-azure/target/azure-webapp/seattle-petstore-3596b742-2cf2-4713-b7a4-b88694754bad
-	[INFO] Trying to deploy artifact to seattle-petstore...
-	[INFO] Deploying the war file applicationPetstore.war...
-	[INFO] Successfully deployed the artifact to https://seattle-petstore.azurewebsites.net
+	[WARNING] The POM for com.microsoft.azure.applicationinsights.v2015_05_01:azure-mgmt-insights:jar:1.0.0-beta is invalid, transitive dependencies (if any) will not be available, enable debug logging for more details
+	Auth type: AZURE_CLI
+	Default subscription: data_anoup.kerrai@microsoft.com(3b46a8b6-6973-49a5-88a2-750102251aad)
+	Username: anoup.kerrai@outlook.com
+	[INFO] Subscription: data_anoup.kerrai@microsoft.com(3b46a8b6-6973-49a5-88a2-750102251aad)
+	[INFO] Creating web app petstore-ak-eastus...
+	[INFO] Successfully created Web App petstore-ak-eastus.
+	[INFO] Trying to deploy artifact to petstore-ak-eastus...
+	[INFO] Deploying (C:\git\migrate-java-db-to-azure\target\applicationPetstore.war)[war]  ...
+	[INFO] Deploying (C:\git\migrate-java-db-to-azure\.scripts\3A-postgresql\postgresql-42.2.5.jar)[lib]  to postgresql-42.2.5.jar ...
+	[INFO] Deploying (C:\git\migrate-java-db-to-azure\.scripts\3A-postgresql\startup.sh)[startup]  ...
+	[INFO] Deploying (C:\git\migrate-java-db-to-azure\.scripts\3A-postgresql\postgresql-datasource-commands.cli)[script]  to postgresql-datasource-commands.cli ...
+	[INFO] Deploying (C:\git\migrate-java-db-to-azure\.scripts\3A-postgresql\postgresql-module.xml)[script]  to postgresql-module.xml ...
+	[INFO] Successfully deployed the artifact to https://petstore-ak-eastus.azurewebsites.net
 	[INFO] ------------------------------------------------------------------------
 	[INFO] BUILD SUCCESS
 	[INFO] ------------------------------------------------------------------------
-	[INFO] Total time: 02:34 min
-	[INFO] Finished at: 2020-12-29T20:58:59-08:00
-	[INFO] Final Memory: 56M/790M
+	[INFO] Total time:  04:18 min
+	[INFO] Finished at: 2021-11-25T17:03:08Z
 	[INFO] ------------------------------------------------------------------------
 	```
 
