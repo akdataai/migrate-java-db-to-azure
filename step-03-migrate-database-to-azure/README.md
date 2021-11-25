@@ -84,13 +84,8 @@ Following the schema creation in Azure PostgreSQL continue to build the migratio
   * Provide the Database (i.e. postgres)
   * Provide the Username (i.e. postgres) 
   * Provide the Password 
-    * As the on-premises PostgreSQL instance is not using SSL deselect the Encrypt connection option
-    * Continue to configure the target Azure Database for PostgreSQL 
-    * Select the database to migrate
-    * Select the tables to migrate
-    * Continue through the starting the activity
-
-    * Note. the Migration might fail if the parameter "wal_level" is not set the logical. 
+  * As the on-premises PostgreSQL instance is not using SSL deselect the Encrypt connection option
+    * Note. the Source database validation might fail if the parameter "wal_level" is not set the logical. 
     <img src="media/NewMigrationProject.png" width=500 align=centre>
 
         The wal_level determines how much information is written to the WAL. 
@@ -108,7 +103,18 @@ Following the schema creation in Azure PostgreSQL continue to build the migratio
       ```bash
       sudo systemctl restart postgresql
       ```
-    * Restart the Migration project job
+
+    * Once the wal_level is set return to the Migration Wizard and Continue 
+    * Configure the target Azure Database for PostgreSQL 
+    <img src="media/MigTargetAzurePostgreSQL.png.png" width=500 align=centre>
+
+    * Select the database to migrate (i.e. postgres)
+    * Select all eight tables to migrate
+
+    <img src="media/MigTargetAzurePostgreSQLTables.png.png" width=500 align=centre>
+
+    * Continue through to the Summary and provide an activity name
+    * Start the migration
     
   * Check migration job is successful and data has migrated into Azure Postgres
       ```bash
