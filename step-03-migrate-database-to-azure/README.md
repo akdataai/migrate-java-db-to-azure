@@ -106,12 +106,12 @@ Following the schema creation in Azure PostgreSQL continue to build the migratio
 
     * Once the wal_level is set return to the Migration Wizard and Continue 
     * Configure the target Azure Database for PostgreSQL 
-    <img src="media/MigTargetAzurePostgreSQL.png.png" width=500 align=centre>
+    <img src="media/MigTargetAzurePostgreSQL.png" width=500 align=centre>
 
     * Select the database to migrate (i.e. postgres)
     * Select all eight tables to migrate
 
-    <img src="media/MigTargetAzurePostgreSQLTables.png.png" width=500 align=centre>
+    <img src="media/MigTargetAzurePostgreSQLTables.png" width=500 align=centre>
 
     * Continue through to the Summary and provide an activity name
     * Start the migration
