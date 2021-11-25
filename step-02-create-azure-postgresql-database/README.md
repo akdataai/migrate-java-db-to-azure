@@ -18,11 +18,11 @@ export them to your local environment.
   * RESOURCE_GROUP 
         Name of your Azure Resource Group
   * WEBAPP 
-        Name of our Azure Web App(e.g. petstore-<your initials>)
+        Name of our Azure Web App (e.g. petstore-<your initials>)
   * REGION 
         Resource group location
   * DATABASE_SERVER 
-        Azure PostgreSQL Database name
+        Azure PostgreSQL Database name (e.g. petstoredb-<your initials>)
   * DATABASE_ADMIN 
         PostgreSQL Admin User Name  
   * DATABASE_ADMIN_PASSWORD
