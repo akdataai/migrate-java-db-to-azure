@@ -140,6 +140,8 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
    * Set WildFly to listen on all network devices
       ```bash
       vi /opt/wildfly/bin/launch.sh
+      ```
+      ```text
       $WILDFLY_HOME/bin/standalone.sh -c $2 -b $3 -bmanagement=0.0.0.0
       ```
   * Validate WildFly Admin Service is running on port 9990
