@@ -168,11 +168,7 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
       * Initialise PostgreSQL 
       ```bash
       sudo postgresql-setup --initdb
-      ```
-      ```bash
       sudo systemctl start postgresql
-      ```
-      ```bash
       sudo systemctl enable postgresql
       ```
 
@@ -182,6 +178,8 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
     * Set the local and IPv4 connection method to trust (not ident)
     ```bash
     vi /var/lib/pgsql/data/pg_hba.conf
+    ```
+    ```text
 	        # TYPE  DATABASE        USER            ADDRESS                 METHOD
 	        # "local" is for Unix domain socket connections only
 	        local   all             all                                     trust
@@ -194,6 +192,8 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
       * Set the listen_address to * for all addresses
     ```bash
     vi /var/lib/pgsql/data/postgresql.conf
+    ```
+    ```text
 	        listen_addresses = '*'
     ```
     
@@ -202,15 +202,15 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
     sudo systemctl restart postgresql
     ```
     
-    * Set the PostgreSQL default "postgresql" user password (example below uses the password Demopass1234567)
+    * Using the PostgreSQL psql client
+    * Set the "postgresql" user password to a new one (example below uses the password Demopass1234567)
     ```bash
     psql -U postgres postgres
     ```
     ```bash
-    postgres=# alter user postgres password 'Demopass1234567';
-    postgres=# \q
+    alter user postgres password 'Demopass1234567';
     ```
-
+    * Exit the psql client using "\q"
     * Check connection to PostgreSQL
     ```bash
     psql "dbname=postgres host=10.0.1.4 user=postgres password=Demopass1234567 port=5432"
