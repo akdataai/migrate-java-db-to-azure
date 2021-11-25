@@ -161,8 +161,8 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
       ```bash
       sudo dnf -qy module disable postgresql
       sudo dnf module enable postgresql:12
-      sudo dnf install postgresql-server
-      sudo dnf install postgresql-contrib
+      sudo dnf -y install postgresql-server
+      sudo dnf -y install postgresql-contrib
       ```
       
       * Initialise PostgreSQL 
