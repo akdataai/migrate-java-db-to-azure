@@ -279,7 +279,7 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
   * Launch Git Bash session
   * Navigate to the git package
       ```bash
-      cd /c/git/migrate-javaee-app-to-azure-training
+      cd /c/git/migrate-java-db-to-azure
       ```
   * Copy the PostgreSQL persistence file to the META-INF folder for deployment
       ```bash
