@@ -106,7 +106,7 @@ Maven uses the pom.xml file to build the deployment and artifacts.
 
 * Configure the Azure App Service in the pom.xml for Maven
   * Rum the maven command below to configure the Azure App Service plugin for Maven
-	```bash
+  	```bash
 	mvn com.microsoft.azure:azure-webapp-maven-plugin:1.16.1:config
 	```
   * Supply the Azure Application name given in setup-env-variables.sh (e.g. petstore-<initial>-location)
@@ -117,7 +117,8 @@ Maven uses the pom.xml file to build the deployment and artifacts.
   
 <img src="media/../MavenAppServiceConfigPom.png" width=500 align=centre>
 
-	Once complete the pom.xml will be updated to include Azure App Service plugin:
+	Once complete the pom.xml will be updated to include Azure App Service plugin
+	
 	```xml    
 	<plugins> 
 
