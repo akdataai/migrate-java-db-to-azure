@@ -68,7 +68,7 @@ Maven uses the pom.xml file to build the deployment and artifacts.
 	
 	* Remove the <resources> lines between the <deployment> section
 	* Insert the <resources> lines below
-	```bash…
+	```xml
           <deployment>
             <resources>
               <resource>
@@ -102,55 +102,60 @@ Maven uses the pom.xml file to build the deployment and artifacts.
               </resource>
             </resources>
           </deployment>
-
 	```
 
-Enable the Azure App Service for Maven
-```bash
-mvn com.microsoft.azure:azure-webapp-maven-plugin:1.16.1:config
-```
-* Supply the Azure Application name given in setup-env-variables.sh (e.g. petstore-<initial>)
-* Accept the defaults for the app service plan
+* Configure the Azure App Service in the pom.xml for Maven
+  * Rum the maven command below to configure the Azure App Service plugin for Maven
+	```bash
+	mvn com.microsoft.azure:azure-webapp-maven-plugin:1.16.1:config
+	```
+  * Supply the Azure Application name given in setup-env-variables.sh (e.g. petstore-<initial>-location)
+  * Supply the Resource Group name
+  * Supply the location
+  * Accept the defaults for the app service plan
+  * Confirm the settings
+  
+<img src="media/../MavenAppServiceConfigPom.png" width=500 align=centre>
 
-This will update the pom.xml to include Azure App Service plugin:
-```xml    
-<plugins> 
+	Once complete the pom.xml will be updated to include Azure App Service plugin:
+	```xml    
+	<plugins> 
 
-  <!--*************************************************-->
-  <!-- Deploy to JBoss EAP in App Service Linux           -->
-  <!--*************************************************-->
+	<!--*************************************************-->
+	<!-- Deploy to JBoss EAP in App Service Linux           -->
+	<!--*************************************************-->
 
-  <plugin>
-    <groupId>com.microsoft.azure</groupId>
-    <artifactId>azure-webapp-maven-plugin</artifactId>
-    <version>1.16.1</version>
-    <configuration>
-      <schemaVersion>v2</schemaVersion>
-      <subscriptionId>${SUBSCRIPTION}</subscriptionId>
-      <resourceGroup>${RESOURCE_GROUP}</resourceGroup>
-      <appName>${WEBAPP}</appName>
-      <pricingTier>P1v2</pricingTier>
-      <region>${REGION}</region>
-      <runtime>
-        <os>Linux</os>
-        <javaVersion>Java 8</javaVersion>
-        <webContainer>Jbosseap 7.2</webContainer>
-      </runtime>
-      <deployment>
-        <resources>
-          <resource>
-            <directory>${project.basedir}/target</directory>
-            <includes>
-              <include>*.war</include>
-            </includes>
-          </resource>
-        </resources>
-      </deployment>
-    </configuration>
-  </plugin>
-    ...
-</plugins>
-```
+	<plugin>
+		<groupId>com.microsoft.azure</groupId>
+		<artifactId>azure-webapp-maven-plugin</artifactId>
+		<version>1.16.1</version>
+		<configuration>
+		<schemaVersion>v2</schemaVersion>
+		<subscriptionId>${SUBSCRIPTION}</subscriptionId>
+		<resourceGroup>${RESOURCE_GROUP}</resourceGroup>
+		<appName>${WEBAPP}</appName>
+		<pricingTier>P1v2</pricingTier>
+		<region>${REGION}</region>
+		<runtime>
+			<os>Linux</os>
+			<javaVersion>Java 8</javaVersion>
+			<webContainer>Jbosseap 7.2</webContainer>
+		</runtime>
+		<deployment>
+			<resources>
+			<resource>
+				<directory>${project.basedir}/target</directory>
+				<includes>
+				<include>*.war</include>
+				</includes>
+			</resource>
+			</resources>
+		</deployment>
+		</configuration>
+	</plugin>
+		...
+	</plugins>
+	```
 ## Build a Java EE application
 Using Maven you can build and deploy the petstore application into Azure App Service
 The deployment process will include creating an Azure App Service Plan and JBOSS Linux Web Application Service within the subscription and resource group defined in the setup-env-variables.sh
