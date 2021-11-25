@@ -1,5 +1,8 @@
 
-.settings/org.eclipse.m2e.core.prefs
-.DS_Store
 .factorypath
+.classpath
+.DS_Store
 .project
+.scripts/.DS_Store
+src/.DS_Store
+step-01-deploy-java-ee-app-to-VM/.DS_Store
