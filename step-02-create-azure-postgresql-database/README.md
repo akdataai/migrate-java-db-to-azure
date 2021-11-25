@@ -90,7 +90,7 @@ az postgres flexible-server create --resource-group oss-hack \
 --admin-user ${DATABASE_ADMIN} \
 --admin-password ${DATABASE_ADMIN_PASSWORD} \
 --sku-name Standard_D4s_v3 \
---tier Burstable \
+--tier GeneralPurpose \
 --public-access all
 ```
 
