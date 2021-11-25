@@ -87,7 +87,7 @@ Within your Azure subscription the Bicep template within this repository can be 
   ![JDK Installation](media/AzulZuluJDKInstallation.png)
   
     * Azure CLI
-    * Direct download link [here](https://aka.ms/installazurecliwindows)
+      * Direct download link [here](https://aka.ms/installazurecliwindows)
    
     * The Git Bash shell
       * Git Bash is pre-installed upon "oss-hack-rdp"
