@@ -45,18 +45,18 @@ Within the Azure Database Migration Service
         ```bash
         pg_dump -h 10.0.1.4 -U postgres -d postgres -s > petstore_schema.sql
         ```
-       <img src="media/pgdump.png" width=500 align=centre>
+        <img src="media/pgdump.png" width=500 align=centre>
       * Import into Azure Database for Postgres
-          * The connection string for the Azure PostgreSQL database can be found on the Azure Portal
-          * Navigate to the Azure PostgreSQL database within your Resource Group
-          * Navigate to the Connection Strings pane
+        * The connection string for the Azure PostgreSQL database can be found on the Azure Portal
+        * Navigate to the Azure PostgreSQL database within your Resource Group
+        * Navigate to the Connection Strings pane
             <img src="media/AzurePostgreSQLConnectionString.png" width=500 align=centre>
-          * Copy the "psql" string
-          * Paste into Putty and replace the dbname, user and password to match your Azure PostgreSQL Database details
-          * Test the psql connection is successful
-          * Quit psql
+        * Copy the "psql" string
+        * Paste into Putty and replace the dbname, user and password to match your Azure PostgreSQL Database details
+        * Test the psql connection is successful
+        * Quit psql
             <img src="media/psqlAzurePostgreSQL.png" width=500 align=centre>
-          * Now load the Pet Store Schema into the Azure PostgreSQL database using psql, inputting our schema file
+        * Now load the Pet Store Schema into the Azure PostgreSQL database using psql, inputting our schema file
           ```bash
           psql "host=petstoredb-ak.postgres.database.azure.com port=5432 dbname=postgres user=pgdba password=Demopass1234567 sslmode=require" < petstore_schema.sql
           ```
@@ -74,18 +74,18 @@ Following the schema creation in Azure PostgreSQL continue to build the migratio
     * Select the tables to migrate
     * Continue through the starting the activity
 
-        * Note. the Migration might fail if the parameter "wal_level" is not set the logical. 
-            wal_level determines how much information is written to the WAL. The default value is replica, which writes enough data to support WAL archiving and replication, including running read-only queries on a standby server. minimal removes all logging except the information required to recover from a crash or immediate shutdown. Finally, logical adds information necessary to support logical decoding. Each level includes the information logged at all lower levels. This parameter can only be set at server start.
+    * Note. the Migration might fail if the parameter "wal_level" is not set the logical. 
+      wal_level determines how much information is written to the WAL. The default value is replica, which writes enough data to support WAL archiving and replication, including running read-only queries on a standby server. minimal removes all logging except the information required to recover from a crash or immediate shutdown. Finally, logical adds information necessary to support logical decoding. Each level includes the information logged at all lower levels. This parameter can only be set at server start.
 
-          * Set the local Postgres WAL to logical and restart Postgres:
-            ```bash
-            postgres=# ALTER SYSTEM SET wal_level = logical;
-            ```
-          * Restart the PostgreSQL service
-            ```bash
-            sudo systemctl restart postgresql
-            ```
-          * Restart the Migration project job
+    * Set the on-premises PostgreSQL wal_level parameter to logical, using psql, and restart:
+      ```bash
+      ALTER SYSTEM SET wal_level = logical;
+      ```
+    * Restart the PostgreSQL service
+      ```bash
+      sudo systemctl restart postgresql
+      ```
+    * Restart the Migration project job
     
   * Check migration job is successful and data has migrated into Azure Postgres
       ```bash
