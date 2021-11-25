@@ -6,7 +6,14 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
 
 ## Deploy Pet Store Application to Linux VM "oss-hack-pg"
     
-* From the RDP "oss-hack-rdp" use Putty to login to Azure VM 
+* From the RDP "oss-hack-rdp" launch Putty and save a session for the oss-hack-pgsql VM
+* Set the Hostname as 10.0.1.4
+* Set the Session Name as "oss-hack-pgsql"
+* Save the session 
+<img src="media/puttysession.png" width=500 align=centre>
+
+* Select the saved session and hit Open
+* Login to the VM us the username and password
 
 * Prepare for WildFly installation
     * Sudo to root
