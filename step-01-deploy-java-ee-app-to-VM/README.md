@@ -247,15 +247,19 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
     * Navigate to Configuration -> Datasources & Drivers
     * Add Data Source (not the XA)
 <img src="media/AddDataSource.png" width=500 align=centre>
-      * Give the JNDI Name as:
+    * Give the JNDI Name as:
+        ```text
         java:jboss/datasources/postgresDS
+        ```
 <img src="media/JDBCJNDIName.png" width=500 align=centre>
-      * Select the PostgreSQL Driver (Downloaded above)
+    * Select the PostgreSQL Driver (Downloaded above)
 <img src="media/JDBCDriverSelection.png" width=500 align=centre>
-      * Set the connection URL to 
+    * Set the connection URL to 
+        ```text
         jdbc:postgresql://localhost:5432/postgres
-      * Set the Username to postgres
-      * Set the password as set previously (e.g. Demopass1234567)
+        ```
+    * Set the Username to postgres
+    * Set the password as set previously (e.g. Demopass1234567)
 <img src="media/PostgreSQLConnectionString.png" width=500 align=centre>
     * Test the connection is successful, review and deploy
 <img src="media/ConnectionTest.png" width=500 align=centre>
