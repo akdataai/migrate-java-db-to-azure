@@ -66,8 +66,8 @@ Maven uses the pom.xml file to build the deployment and artifacts.
 	vi ./pom.xml
 	```
 	
-	* Remove the <resource> lines between the <deployment> section
-	* Insert the <resource> lines below
+	* Remove the <resources> lines between the <deployment> section
+	* Insert the <resources> lines below
 	```bash…
           <deployment>
             <resources>
@@ -77,30 +77,32 @@ Maven uses the pom.xml file to build the deployment and artifacts.
                 <includes>
                   <include>*.war</include>
                 </includes>
-            </resource>
-            <resource>
-               <type>lib</type>
-               <directory>${project.basedir}/.scripts/3A-postgresql</directory>
-               <includes>
-                 <include>*.jar</include>
-               </includes>
-            </resource>
-            <resource>
-               <type>startup</type>
-               <directory>${project.basedir}/.scripts/3A-postgresql</directory>
-               <includes>
-                 <include>*.sh</include>
-               </includes>
-            </resource>
-            <resource>
-               <type>script</type>
-               <directory>${project.basedir}/.scripts/3A-postgresql</directory>
-               <includes>
-                 <include>*.cli</include>
-                 <include>*.xml</include>
-               </includes>
-            </resource>
+              </resource>
+              <resource>
+                <type>lib</type>
+                <directory>${project.basedir}/.scripts/3A-postgresql</directory>
+                <includes>
+                  <include>*.jar</include>
+                </includes>
+              </resource>
+              <resource>
+                <type>startup</type>
+                <directory>${project.basedir}/.scripts/3A-postgresql</directory>
+                <includes>
+                  <include>*.sh</include>
+                </includes>
+              </resource>
+              <resource>
+                <type>script</type>
+                <directory>${project.basedir}/.scripts/3A-postgresql</directory>
+                <includes>
+                  <include>*.cli</include>
+                  <include>*.xml</include>
+                </includes>
+              </resource>
+            </resources>
           </deployment>
+
 	```
 
 Enable the Azure App Service for Maven
