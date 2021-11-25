@@ -220,7 +220,7 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
 
 * From the Lab VM "oss-hack-rdp"
   * Download PostgreSQL JDBC driver to the Lab VM
-  https://jdbc.postgresql.org/download/postgresql-42.3.1.jar
+    Direct Download [here](https://jdbc.postgresql.org/download/postgresql-42.3.1.jar)
 
   * Using Edge browser, login to the Wildfly Admin Console
     http://10.0.1.4:9990
