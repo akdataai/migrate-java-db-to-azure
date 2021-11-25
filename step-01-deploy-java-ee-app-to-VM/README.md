@@ -26,7 +26,7 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
         ```
     * Install Java 8 JDK
         ```bash
-        yum install java-1.8.0-openjdk-devel
+        yum install -y java-1.8.0-openjdk-devel
         java -version
         ```
     * Install wget
