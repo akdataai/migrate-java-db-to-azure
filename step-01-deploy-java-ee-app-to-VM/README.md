@@ -223,15 +223,19 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
     Direct Download [here](https://jdbc.postgresql.org/download/postgresql-42.3.1.jar)
     Note. Edge will block the download using the elipses select "keep" (the JAR file is from a trusted source)
 <img src="media/PostgreSQLjdbcDriverDownload.png" width=500 align=centre>
- 
+
   * Using Edge browser, login to the Wildfly Admin Console
     http://10.0.1.4:9990
 
   * Create the PostgreSQL Data Source
     * Navigate to Deployments 
-    * Select the PostgreSQL JDBC driver file (postgresql-42.3.1.jar)
+    * Click the Add button
+    * Choose to upload a deployment
+    * On the upload screen select the PostgreSQL JDBC driver file (postgresql-42.3.1.jar)
     * Accept the Name and Finish
 <img src="media/UploadPostgreSQLJar.png" width=500 align=centre>
+<img src="media/SelectPostgreSQLJar.png" width=500 align=centre>
+<img src="media/ConfirmJarDeployment.png" width=500 align=centre>
 
   * Navigate to 
     * Navigate to Configuration -> Datasources & Drivers
