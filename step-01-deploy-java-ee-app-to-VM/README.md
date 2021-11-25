@@ -227,7 +227,7 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
   * Using Edge browser, login to the Wildfly Admin Console
     http://10.0.1.4:9990
 
-  * Create the PostgreSQL Data Source
+  * Deploy the PostgreSQL JDBC Driver to WildFly
     * Navigate to Deployments 
     * Click the Add button
     * Choose to upload a deployment
@@ -243,7 +243,7 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
       * Select the Server petstorevm
       * Select reload
   
-  * Navigate to 
+  * Now create the PostgreSQL Data Source
     * Navigate to Configuration -> Datasources & Drivers
     * Add Data Source (not the XA)
     <img src="media/AddDataSource.png" width=500 align=centre>
