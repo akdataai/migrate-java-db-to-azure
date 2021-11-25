@@ -71,9 +71,19 @@ Within the Azure Database Migration Service
 
 # Create Azure Database Migration Service Migration Project
 Following the schema creation in Azure PostgreSQL continue to build the migration project
-  * Configure the source server name 
-      Note. the VM IP address should be used here
-  * Provide the port, database, username and password
+  * Set the Project name
+  * Configure the source server type as PostgreSQL
+  * Configure the Target server type as Azure Database for PostgreSQL
+  * Select the Migration activity type as Online data migration
+  <img src="media/NewMigrationProject.png" width=500 align=centre>
+
+  * Select Create
+  * Provide the Source Details
+    * Source Server Name - Use the VM IP address (i.e. 10.0.1.4)
+  * Provide the Server port
+  * Provide the Database (i.e. postgres)
+  * Provide the Username (i.e. postgres) 
+  * Provide the Password 
     * As the on-premises PostgreSQL instance is not using SSL deselect the Encrypt connection option
     * Continue to configure the target Azure Database for PostgreSQL 
     * Select the database to migrate
@@ -81,8 +91,13 @@ Following the schema creation in Azure PostgreSQL continue to build the migratio
     * Continue through the starting the activity
 
     * Note. the Migration might fail if the parameter "wal_level" is not set the logical. 
-      wal_level determines how much information is written to the WAL. The default value is replica, which writes enough data to support WAL archiving and replication, including running read-only queries on a standby server. minimal removes all logging except the information required to recover from a crash or immediate shutdown. Finally, logical adds information necessary to support logical decoding. Each level includes the information logged at all lower levels. This parameter can only be set at server start.
+    <img src="media/NewMigrationProject.png" width=500 align=centre>
 
+        The wal_level determines how much information is written to the WAL. 
+        The default value is replica, which writes enough data to support WAL archiving and replication, including running read-only queries on a standby server. 
+        Minimal removes all logging except the information required to recover from a crash or immediate shutdown. 
+        Logical adds information necessary to support logical decoding. 
+      
     * Set the on-premises PostgreSQL wal_level parameter to logical, using psql, and restart:
       ```bash
       psql "dbname=postgres host=10.0.1.4 user=postgres password=Demopass1234567 port=5432"
