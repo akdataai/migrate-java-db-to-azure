@@ -256,4 +256,4 @@ curl -X GET https://${WEBAPP}.azurewebsites.net/swagger.json
 
 ---
 
-⬅️ Previous guide: [03 - Migrate on-premises PostgreSQL database to Azure ](../../step-03-migrate-database-to-azure/README.md)
+⬅️ Previous guide: [03 - Migrate on-premises PostgreSQL database to Azure ](../step-03-migrate-database-to-azure/README.md)

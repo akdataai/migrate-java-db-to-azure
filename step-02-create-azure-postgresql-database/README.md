@@ -33,6 +33,6 @@ to cloud.
   
 Also, for your convenience, there is a [cheat sheet for PostgreSQL CLI](http://www.postgresqltutorial.com/postgresql-cheat-sheet/).
    
-⬅️ Previous guide: [01 - Deploy a Java EE application to VM](../../step-01-deploy-java-ee-app-to-VM/README.md)
+⬅️ Previous guide: [01 - Deploy a Java EE application to VM](../step-01-deploy-java-ee-app-to-VM/README.md)
   
-➡️ Next guide: [03 - Migrate on-premises database](../../step-03-migrate-database-to-azure/README.md)
+➡️ Next guide: [03 - Migrate on-premises database](../step-03-migrate-database-to-azure/README.md)
