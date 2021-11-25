@@ -28,7 +28,12 @@ set the subscription via
 ```az account set --subscription ${SUBSCRIPTION}```
 
 # Configure application to deploy to Azure App Service
-In this section amend two deployment configuration files to cater for a database migration, not a full redeploy and re-seed of Azure Database for PostgreSQL
+In this section we amend deployment configuration files that are uploaded to Azure App Service as artifacts.
+The first is the persistence.xml and the second is the postgresql-datasource-commands.cli
+
+These two files are uploaded as artifacts to Azure App Service, alongside the war file and a startup script.
+The startup script is called by Azure App Service on any startup
+The startup script calls upon the persistence.xml and postgresql-datasource-commands.cli to establis the connection with Azure Database for PostgreSQL 
 
 * Amend the persistence.xml to prevent the deployment dropping and recreating tables in Azure Postgres
 	```bash
