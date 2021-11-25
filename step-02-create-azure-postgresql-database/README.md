@@ -11,7 +11,8 @@ Set environment variables for storing Azure information,
 particularly Azure Resource Group and Web app names. Then, you can 
 export them to your local environment. 
 
-* Using Git Bash create an environment variable file using the contents below and edit the parameters as follows
+* Using Git Bash 
+* Create an environment variable file using the contents below and edit the parameters as follows
 * Amend the Azure Environment setting 
   * SUBSCRIPTION
         Your Azure Subscription ID
@@ -72,6 +73,21 @@ vi .scripts/setup-env-variables.sh
 ```bash
 source .scripts/setup-env-variables.sh
 ```
+
+## Verify Azure Subscription and setup development environment
+
+Ensure in Git Bash your Azure CLI is logged into your Azure subscription.
+
+>💡 If using Windows, make sure you enter these commands and all others that follow in Git Bash.
+
+```bash
+az login # Sign into an azure account
+az account show # See the currently signed-in account.
+```
+
+Ensure your default subscription is the one you intend to use for this lab, and if not - 
+set the subscription via 
+```az account set --subscription ${SUBSCRIPTION}```
 
 ## Create and configure Petstore database in Azure Database for PostgreSQL
 
