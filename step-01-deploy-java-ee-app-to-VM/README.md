@@ -45,28 +45,16 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
     	* Create a service user for Wildfly 
 	    ```bash
 	    sudo groupadd --system wildfly
-	    ```
-	    ```bash
 	    sudo useradd -s /sbin/nologin --system -d /opt/wildfly  -g wildfly wildfly
 	    ```
 	
 	*  Place WildFly Service scripts into /etc/wildfly and systemd area
 	    ```bash
 	    sudo mkdir /etc/wildfly
-	    ```
-	    ```bash
 	    sudo cp /opt/wildfly/docs/contrib/scripts/systemd/wildfly.conf /etc/wildfly/
-	    ```
-	    ```bash
 	    sudo cp /opt/wildfly/docs/contrib/scripts/systemd/wildfly.service /etc/systemd/system/
-	    ```
-	    ```bash
 	    sudo cp /opt/wildfly/docs/contrib/scripts/systemd/launch.sh /opt/wildfly/bin/
-	    ```
-	    ```bash
 	    sudo chmod +x /opt/wildfly/bin/launch.sh
-	    ```
-	    ```bash
 	    sudo chown -R wildfly:wildfly /opt/wildfly
 	    ```
   * Reload the Services Daemon and Start WildFly as a service
