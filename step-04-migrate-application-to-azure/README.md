@@ -46,6 +46,7 @@ The startup script calls the persistence.xml and postgresql-datasource-commands.
 * Amend the Azure Postgres datasource parameters within the ".scripts/3A-postgresql/postgresql-datasource-commands.cli" file
 	The data-source originally in the file is not compatible to establish a connection with Azure Database for PostgreSQL Flexible Server
 
+	* Edit the postgresql-datasource-commands.cli file
 	```bash    
 	vi .scripts/3A-postgresql/postgresql-datasource-commands.cli
 	```
@@ -56,40 +57,49 @@ The startup script calls the persistence.xml and postgresql-datasource-commands.
 	data-source add --name=postgresDS --driver-name=postgres --jndi-name=java:jboss/datasources/postgresDS --connection-url=${POSTGRES_CONNECTION_URL,env.POSTGRES_CONNECTION_URL:jdbc:postgresql://db:5432/postgres} --use-ccm=true --max-pool-size=5 --blocking-timeout-wait-millis=5000 --enabled=true --driver-class=org.postgresql.Driver --exception-sorter-class-name=org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLExceptionSorter --jta=true --use-java-context=true --valid-connection-checker-class-name=org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLValidConnectionChecker
 	```
 
-Amend the pom.xml to include the Azure postgresql resources for Azure App Service deployment
-$ vi pom.xml
-	…
-	          <deployment>
-	            <resources>
-	              <resource>
-	                <type>war</type>
-	                <directory>${project.basedir}/target</directory>
-	                <includes>
-	                  <include>*.war</include>
-	                </includes>
-	            </resource>
-	              <resource>
-	                <type>lib</type>
-	                <directory>${project.basedir}/.scripts/3A-postgresql</directory>
-	                <includes>
-	                  <include>*.jar</include>
-	                </includes>
-	              </resource>
-	              <resource>
-	                <type>startup</type>
-	                <directory>${project.basedir}/.scripts/3A-postgresql</directory>
-	                <includes>
-	                  <include>*.sh</include>
-	                </includes>
-	              </resource>
-	              <resource>
-	                <type>script</type>
-	                <directory>${project.basedir}/.scripts/3A-postgresql</directory>
-	                <includes>
-	                  <include>*.cli</include>
-	                  <include>*.xml</include>
-	                </includes>
-	              </resource>
+* Edit the pom.xml file for the Maven Deployment into Azure App Service
+Maven uses the pom.xml file to build the deployment and artifacts.
+
+For the Azure App Service Deployment we need to include the Azure postgresql resources
+
+	```bash
+	vi ./pom.xml
+	```
+	
+	```bash…
+          <deployment>
+            <resources>
+              <resource>
+                <type>war</type>
+                <directory>${project.basedir}/target</directory>
+                <includes>
+                  <include>*.war</include>
+                </includes>
+            </resource>
+            <resource>
+               <type>lib</type>
+               <directory>${project.basedir}/.scripts/3A-postgresql</directory>
+               <includes>
+                 <include>*.jar</include>
+               </includes>
+            </resource>
+            <resource>
+               <type>startup</type>
+               <directory>${project.basedir}/.scripts/3A-postgresql</directory>
+               <includes>
+                 <include>*.sh</include>
+               </includes>
+            </resource>
+            <resource>
+               <type>script</type>
+               <directory>${project.basedir}/.scripts/3A-postgresql</directory>
+               <includes>
+                 <include>*.cli</include>
+                 <include>*.xml</include>
+               </includes>
+            </resource>
+          </deployment>
+	```
 
 Enable the Azure App Service for Maven
 ```bash
