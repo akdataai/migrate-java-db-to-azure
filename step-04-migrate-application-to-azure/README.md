@@ -62,9 +62,9 @@ Maven uses the pom.xml file to build the deployment and artifacts.
 
   * For the Azure App Service Deployment we need to include the Azure postgresql resources
 	* Edit the pom.xml
-  	```bash
-	vi ./pom.xml
-	```
+  		```bash
+		vi ./pom.xml
+		```
 	
 	* Remove the <resources> lines between the <deployment> section
 	* Insert the <resources> lines below
@@ -105,18 +105,45 @@ Maven uses the pom.xml file to build the deployment and artifacts.
 	```
 
 * Configure the Azure App Service in the pom.xml for Maven
-  * Rum the maven command below to configure the Azure App Service plugin for Maven
-  	```bash
-	mvn com.microsoft.azure:azure-webapp-maven-plugin:1.16.1:config
-	```
-  * Supply the Azure Application name given in setup-env-variables.sh (e.g. petstore-<initial>-location)
-  * Supply the Resource Group name
-  * Supply the location
-  * Accept the defaults for the app service plan
-  * Confirm the settings
+    * Run the maven command below to configure the Azure App Service plugin for Maven
+  		```bash
+		mvn com.microsoft.azure:azure-webapp-maven-plugin:1.16.1:config
+		```
+	* Supply the Azure Application name given in setup-env-variables.sh (e.g. petstore-<initial>-location)
+    * Supply the Resource Group name
+    * Supply the location
+    * Accept the defaults for the app service plan
+    * Confirm the settings
   
 <img src="media/MavenAppServiceConfigPom.png" width=500 align=centre>
-<img src="media/MavenAppServiceConfigPomUpdate.png" width=500 align=centre>
+
+    * Maven will return the successful configuration
+		```text
+		[INFO] Scanning for projects...
+		[INFO]
+		[INFO] ----------------< org.agoncal.application:petstoreee7 >-----------------
+		[INFO] Building Petstore application using Java EE 7 7.0
+		[INFO] --------------------------------[ war ]---------------------------------
+		[INFO]
+		[INFO] --- azure-webapp-maven-plugin:1.16.1:config (default-cli) @ petstoreee7 ---
+		[WARNING] The POM for com.microsoft.azure.applicationinsights.v2015_05_01:azure-mgmt-insights:jar:1.0.0-beta is invalid, transiti
+		Please confirm webapp properties
+		AppName : petstore-ak-eastus
+		ResourceGroup : oss-hack
+		Region : eastus
+		PricingTier : P1v3
+		OS : Linux
+		Java : Java 8
+		Web server stack: Jbosseap 7.2
+		Deploy to slot : false
+		[INFO] Saving configuration to pom.
+		[INFO] ------------------------------------------------------------------------
+		[INFO] BUILD SUCCESS
+		[INFO] ------------------------------------------------------------------------
+		[INFO] Total time:  01:46 min
+		[INFO] Finished at: 2021-11-25T16:42:33Z
+		[INFO] ------------------------------------------------------------------------
+		```
 
 * Once complete the pom.xml will be updated to include Azure App Service plugin
 	
