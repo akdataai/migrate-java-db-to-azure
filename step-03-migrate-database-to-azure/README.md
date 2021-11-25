@@ -49,7 +49,7 @@ Within the Azure Database Migration Service
           * The connection string for the Azure PostgreSQL database can be found on the Azure Portal
           * Navigate to the Azure PostgreSQL database within your Resource Group
           * Navigate to the Connection Strings pane
-            <img src="media/AzureMigrationServiceNetworking.png" width=500 align=centre>
+            <img src="media/AzurePostgreSQLConnectionString.png" width=500 align=centre>
           * Copy the "psql" string
           * Paste into Putty and replace the dbname, user and password to match your Azure PostgreSQL Database details
           * Test the psql connection is successful
