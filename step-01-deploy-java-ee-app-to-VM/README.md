@@ -144,10 +144,16 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
       ```text
       $WILDFLY_HOME/bin/standalone.sh -c $2 -b $3 -bmanagement=0.0.0.0
       ```
+  * Restart WildFly
+    ```bash
+    systemctl restart wildfly
+    ```
   * Validate WildFly Admin Service is running on port 9990
       ```bash
       ss -tunelp | grep 9990
-        tcp   LISTEN 0      50           0.0.0.0:9990      0.0.0.0:*    users:(("java",pid=79152,fd=497)) uid:991 ino:358887 sk:13 <->  
+      ```
+      ```text
+      tcp   LISTEN 0      50           0.0.0.0:9990      0.0.0.0:*    users:(("java",pid=79152,fd=497)) uid:991 ino:358887 sk:13 <->  
       ```
 
 * Deploy PostgreSQL 12
