@@ -45,19 +45,23 @@ Within the Azure Database Migration Service
         ```bash
         pg_dump -h 10.0.1.4 -U postgres -d postgres -s > petstore_schema.sql
         ```
+      <img src="media/pgdump.png" width=500 align=centre>
       * Import into Azure Database for Postgres
           * The connection string for the Azure PostgreSQL database can be found on the Azure Portal
           * Navigate to the Azure PostgreSQL database within your Resource Group
           * Navigate to the Connection Strings pane
-            <img src="media/AzurePostgreSQLConnectionString.png" width=500 align=centre>
+          <img src="media/AzurePostgreSQLConnectionString.png" width=500 align=centre>
           * Copy the "psql" string
           * Paste into Putty and replace the dbname, user and password to match your Azure PostgreSQL Database details
           * Test the psql connection is successful
           * Quit psql
-          * Run psql this time inputting the petstore_schema.sql file generated from our on-premises database
-        ```bash
-        psql "host=petstoredb-ak.postgres.database.azure.com port=5432 dbname=postgres user=pgdba password=Demopass1234567 sslmode=require" < petstore_schema.sql
-        ```
+          <img src="media/psqlAzurePostgreSQL.png" width=500 align=centre>
+          * Now load the Pet Store Schema into the Azure PostgreSQL database using psql, inputting our schema file
+          ```bash
+          psql "host=petstoredb-ak.postgres.database.azure.com port=5432 dbname=postgres user=pgdba password=Demopass1234567 sslmode=require" < petstore_schema.sql
+          ```
+          <img src="media/psqlAzurePostgreSQLSchema.png" width=500 align=centre>
+
 
 # Create Azure Database Migration Service Migration Project
 Following the schema creation in Azure PostgreSQL continue to build the migration project
