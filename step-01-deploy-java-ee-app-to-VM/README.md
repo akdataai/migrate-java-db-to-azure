@@ -95,86 +95,93 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
 	    * Leave the groups blank
 	    * Confirm (yes) adding the user to the realm 'ManagementRealm'
 	    * Confirm (yes) for the user to connect to the master or for a remote connection
-	    ```bash
-	    sudo /opt/wildfly/bin/add-user.sh
-		What type of user do you wish to add? 
-		 a) Management User (mgmt-users.properties) 
-		 b) Application User (application-users.properties)
-		(a): a
+        ```bash
+        sudo /opt/wildfly/bin/add-user.sh
+        ```
+        * Example run with answers
+        ```text
+            What type of user do you wish to add? 
+            a) Management User (mgmt-users.properties) 
+            b) Application User (application-users.properties)
+            (a): a
 
-		Enter the details of the new user to add.
-		Using realm 'ManagementRealm' as discovered from the existing property files.
-		Username : wildflyAdmin
-		Password recommendations are listed below. To modify these restrictions edit the add-user.properties configuration file.
-		 - The password should be different from the username
-		 - The password should not be one of the following restricted values {root, admin, administrator}
-		 - The password should contain at least 8 characters, 1 alphabetic character(s), 1 digit(s), 1 non-alphanumeric symbol(s)
-		Password : 
-		WFLYDM0102: Password should have at least 1 non-alphanumeric symbol.
-		Are you sure you want to use the password entered yes/no? yes
-		Re-enter Password : 
-		What groups do you want this user to belong to? (Please enter a comma separated list, or leave blank for none)[  ]: 
-		About to add user 'WildflyAdmin' for realm 'ManagementRealm'
-		Is this correct yes/no? yes
-		Added user 'WildflyAdmin' to file '/opt/wildfly/standalone/configuration/mgmt-users.properties'
-		Added user 'WildflyAdmin' to file '/opt/wildfly/domain/configuration/mgmt-users.properties'
-		Added user 'WildflyAdmin' with groups  to file '/opt/wildfly/standalone/configuration/mgmt-groups.properties'
-		Added user 'WildflyAdmin' with groups  to file '/opt/wildfly/domain/configuration/mgmt-groups.properties'
-		Is this new user going to be used for one AS process to connect to another AS process? 
-		e.g. for a slave host controller connecting to the master or for a Remoting connection for server to server Jakarta Enterprise Beans calls.
-		yes/no? yes
-		To represent the user add the following to the server-identities definition <secret value="RGVtb3Bhc3MxMjM0NTY3" />
+            Enter the details of the new user to add.
+            Using realm 'ManagementRealm' as discovered from the existing property files.
+            
+            Username : wildflyAdmin
+            Password recommendations are listed below. To modify these restrictions edit the add-user.properties configuration file.
+            - The password should be different from the username
+            - The password should not be one of the following restricted values {root, admin, administrator}
+            - The password should contain at least 8 characters, 1 alphabetic character(s), 1 digit(s), 1 non-alphanumeric symbol(s)
+            Password : 
+            WFLYDM0102: Password should have at least 1 non-alphanumeric symbol.
+            Are you sure you want to use the password entered yes/no? yes
+            
+            Re-enter Password : 
+            
+            What groups do you want this user to belong to? (Please enter a comma separated list, or leave blank for none)[  ]: 
+            About to add user 'WildflyAdmin' for realm 'ManagementRealm'
+            Is this correct yes/no? yes
+            
+            Added user 'WildflyAdmin' to file '/opt/wildfly/standalone/configuration/mgmt-users.properties'
+            Added user 'WildflyAdmin' to file '/opt/wildfly/domain/configuration/mgmt-users.properties'
+            Added user 'WildflyAdmin' with groups  to file '/opt/wildfly/standalone/configuration/mgmt-groups.properties'
+            Added user 'WildflyAdmin' with groups  to file '/opt/wildfly/domain/configuration/mgmt-groups.properties'
+            
+            Is this new user going to be used for one AS process to connect to another AS process? 
+            e.g. for a slave host controller connecting to the master or for a Remoting connection for server to server Jakarta Enterprise Beans calls.
+            yes/no? yes
+            
+            To represent the user add the following to the server-identities definition <secret value="RGVtb3Bhc3MxMjM0NTY3" />
 	    ```
 
   * Set WildFly path for login by adding the PATH in the bashrc file
-    ```bash
-    cat >> ~/.bashrc <<EOF
-    export WildFly_BIN="/opt/wildfly/bin/"
-    export PATH=\$PATH:/opt/wildfly/bin/
-    EOF
-    ```
-    
-  * Source the new PATH in your session
-    ```bash
-    source ~/.bashrc
-    ```
-    
-  * Set WildFly to listen on all network devices
-    ```bash
-    vi /opt/wildfly/bin/launch.sh
-    $WILDFLY_HOME/bin/standalone.sh -c $2 -b $3 -bmanagement=0.0.0.0
-    ```
+      ```bash
+      cat >> ~/.bashrc <<EOF
+      export WildFly_BIN="/opt/wildfly/bin/"
+      export PATH=\$PATH:/opt/wildfly/bin/
+      EOF
+      ```
+   * Source the new PATH in your session
+      ```bash
+      source ~/.bashrc
+      ```
+   * Set WildFly to listen on all network devices
+      ```bash
+      vi /opt/wildfly/bin/launch.sh
+      $WILDFLY_HOME/bin/standalone.sh -c $2 -b $3 -bmanagement=0.0.0.0
+      ```
   * Validate WildFly Admin Service is running on port 9990
-    ```bash
-    ss -tunelp | grep 9990
-    	tcp   LISTEN 0      50           0.0.0.0:9990      0.0.0.0:*    users:(("java",pid=79152,fd=497)) uid:991 ino:358887 sk:13 <->  
-    ```
+      ```bash
+      ss -tunelp | grep 9990
+        tcp   LISTEN 0      50           0.0.0.0:9990      0.0.0.0:*    users:(("java",pid=79152,fd=497)) uid:991 ino:358887 sk:13 <->  
+      ```
 
 * Deploy PostgreSQL 12
   * Install PostgreSQL 12
-  ```bash
-  sudo dnf -qy module disable postgresql
-  ```
-  ```bash
-  sudo dnf module enable postgresql:12
-  ```
-  ```bash
-  sudo dnf install postgresql-server
-  ```
-  ```bash
-  sudo dnf install postgresql-contrib
-  ```
-  
-  * Initialise PostgreSQL 
-  ```bash
-  sudo postgresql-setup --initdb
-  ```
-  ```bash
-  sudo systemctl start postgresql
-  ```
-  ```bash
-  sudo systemctl enable postgresql
-  ```
+      ```bash
+      sudo dnf -qy module disable postgresql
+      ```
+      ```bash
+      sudo dnf module enable postgresql:12
+      ```
+      ```bash
+      sudo dnf install postgresql-server
+      ```
+      ```bash
+      sudo dnf install postgresql-contrib
+      ```
+      
+      * Initialise PostgreSQL 
+      ```bash
+      sudo postgresql-setup --initdb
+      ```
+      ```bash
+      sudo systemctl start postgresql
+      ```
+      ```bash
+      sudo systemctl enable postgresql
+      ```
 
   * Configure PostgreSQL to listen and permit connections on all network devices
     * Edit the pg_hba.conf
@@ -184,12 +191,14 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
     vi /var/lib/pgsql/data/pg_hba.conf
 	        # TYPE  DATABASE        USER            ADDRESS                 METHOD
 	        # "local" is for Unix domain socket connections only
-	        local   all             all                                     **trust**
+	        local   all             all                                     trust
 	        # IPv4 local connections:
-	        host    all             all             **0.0.0.0/0 **              **trust**
+	        host    all             all             0.0.0.0/0               trust
     ```
     
     * Configure PostgreSQL to listen on all addresses
+      * Uncomment the listen_address parameter
+      * Set the listen_address to * for all addresses
     ```bash
     vi /var/lib/pgsql/data/postgresql.conf
 	        listen_addresses = '*'
@@ -254,23 +263,23 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
 # Package Pet Store application to deploy
   * Launch Git Bash session
   * Navigate to the git package
-  ```bash
-  cd /c/git/migrate-javaee-app-to-azure-training
-  ```
+      ```bash
+      cd /c/git/migrate-javaee-app-to-azure-training
+      ```
   * Copy the PostgreSQL persistence file to the META-INF folder for deployment
-  ```bash
-  cp .scripts/persistence-postgresql.xml ./src/main/resources/META-INF/persistence.xml
-  ```
+      ```bash
+      cp .scripts/persistence-postgresql.xml ./src/main/resources/META-INF/persistence.xml
+      ```
   * Build the Pet Store WAR file using Maven for deployment
-  ```bash
-  mvn clean compile -Dmaven.test.skip=true
-  ```
-  ```bash
-  mvn clean package -Dmaven.test.skip=true
-  ```
-  ```bash
-  mvn clean install -Dmaven.test.skip=true
-  ```
+      ```bash
+      mvn clean compile -Dmaven.test.skip=true
+      ```
+      ```bash
+      mvn clean package -Dmaven.test.skip=true
+      ```
+      ```bash
+      mvn clean install -Dmaven.test.skip=true
+      ```
 
 # Deploy Pet Store Application to Wildfly
   * Login to Administration Console
@@ -287,23 +296,23 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
 
 # Check the deployment has populated the PostgreSQL database
   * Using psql from Git Bash connect to PostgreSQL and check the tables and records have been deployed 
-  ```bash
-  psql "dbname=postgres host=10.0.1.4 user=postgres password=Demopass1234567 port=5432"
-  postgres=# \dt
-                        List of relations
-            Schema |        Name        | Type  |  Owner
-            --------+--------------------+-------+----------
-            public | category           | table | postgres
-            public | country            | table | postgres
-            public | customer           | table | postgres
-            public | item               | table | postgres
-            public | order_line         | table | postgres
-            public | product            | table | postgres
-            public | purchase_order     | table | postgres
-            public | t_order_order_line | table | postgres
-            (8 rows)
-  postgres=# select * from customer;
-  ```
+      ```bash
+      psql "dbname=postgres host=10.0.1.4 user=postgres password=Demopass1234567 port=5432"
+      postgres=# \dt
+                            List of relations
+                Schema |        Name        | Type  |  Owner
+                --------+--------------------+-------+----------
+                public | category           | table | postgres
+                public | country            | table | postgres
+                public | customer           | table | postgres
+                public | item               | table | postgres
+                public | order_line         | table | postgres
+                public | product            | table | postgres
+                public | purchase_order     | table | postgres
+                public | t_order_order_line | table | postgres
+                (8 rows)
+      postgres=# select * from customer;
+      ```
 ---
 
 ⬅️ Previous guide: [00 - Prerequisites and Setup](../step-00-setup-your-environment/README.md)
