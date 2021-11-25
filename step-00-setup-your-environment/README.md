@@ -60,8 +60,6 @@ Within your Azure subscription the Bicep template within this repository can be 
     * The deployment progress can be checked using the Azure Portal
       * Navigate to the resource group and to the Deployments pane
         <img src="media/BicepDeployment.png" width=500 align=centre>   
-
-
 * Following the successful Bicep deployment
     * Create a Network Security Group upon the PgSubnet with the following inbound rules
       * SSH - 22
@@ -79,23 +77,23 @@ Within your Azure subscription the Bicep template within this repository can be 
 * Login to "oss-hack-rdp" 
   * The training lab requires the following to be installed on your development machine or deployed Azure Remote Desktop:
     * Install Edge Browser
-      * https://www.microsoft.com/en-us/edge?r=1
+      * direct download link [here]https://go.microsoft.com/fwlink/?linkid=2108834&Channel=Stable&language=en
   
     * JDK 1.8
-    *  Copy the link [here](https://cdn.azul.com/zulu/bin/zulu8.58.0.13-ca-jdk8.0.312-win_x64.msi) and paste into your lab browser to download directly
+    *  Direct download link [here](https://cdn.azul.com/zulu/bin/zulu8.58.0.13-ca-jdk8.0.312-win_x64.msi)
       * As part of the installation select the option to set the JAVA_HOME
         * The step above will set the environment variable `JAVA_HOME` to the path of `javac` for this JDK installation.
   
   ![JDK Installation](media/AzulZuluJDKInstallation.png)
   
     * Azure CLI
-    * Copy the link [here](https://aka.ms/installazurecliwindows) and paste into your lab browser to download directly 
+    * Direct download link [here](https://aka.ms/installazurecliwindows)
    
     * The Git Bash shell
       * Git Bash is pre-installed upon "oss-hack-rdp"
     
     * Maven
-      * Copy the link [here](https://dlcdn.apache.org/maven/maven-3/3.8.4/binaries/apache-maven-3.8.4-bin.zip) and paste into your lab browser to download directly 
+      * Direct download link [here](https://dlcdn.apache.org/maven/maven-3/3.8.4/binaries/apache-maven-3.8.4-bin.zip) 
       * Download and unpack to c:\maven
       * From the Start Menu search and launch "System Environment Variables"
       * Within the System Environment Variables section
@@ -107,7 +105,7 @@ Within your Azure subscription the Bicep template within this repository can be 
       * [PostgreSQL CLI](https://www.postgresql.org/docs/current/app-psql.html)
     
     * The [`jq` utility](https://stedolan.github.io/jq/download/). 
-        * Copy the link [here](https://github.com/stedolan/jq/releases/download/jq-1.6/jq-win64.exe) and paste into your lab browser to download directly 
+        * Direct download link [here](https://github.com/stedolan/jq/releases/download/jq-1.6/jq-win64.exe)
         * Download to c:\jq
       * Launch GitBash and edit the the `~/.bashrc` file to point to jq: 
        ```bash
@@ -126,7 +124,7 @@ Within your Azure subscription the Bicep template within this repository can be 
       ````
     
     * Download and install Putty MSI
-      * Copy the link [here](https://the.earth.li/~sgtatham/putty/latest/w64/putty-64bit-0.76-installer.msi) and paste into your lab browser to download directly 
+      * Direct download link [here](https://the.earth.li/~sgtatham/putty/latest/w64/putty-64bit-0.76-installer.msi)
 
 ---
 
