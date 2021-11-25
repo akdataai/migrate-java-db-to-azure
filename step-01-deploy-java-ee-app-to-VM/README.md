@@ -36,14 +36,8 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
     * Install WildFly 
         ```bash
         export WILDFLY_RELEASE="25.0.1"
-        ```
-        ```bash
         wget https://github.com/wildfly/wildfly/releases/download/25.0.1.Final/wildfly-25.0.1.Final.tar.gz
-        ```
-        ```bash
         tar xvf wildfly-$WILDFLY_RELEASE.Final.tar.gz
-        ```
-        ```bash
         mv wildfly-25.0.1.Final /opt/wildfly
         ```
     
