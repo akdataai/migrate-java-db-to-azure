@@ -10,7 +10,7 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
 
 Source the environment variables:
 ```bash
-cd /c/git/migrate-javaee-app-to-azure-training/
+cd /c/git/migrate-java-db-to-azure
 source .scripts/setup-env-variables.sh
 ```
 
