@@ -6,7 +6,23 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
 
 ---
 
-## Verify Azure Subscription and setup development environment
+
+## Configure PostgreSQL Data Source
+
+There are 3 steps to configure a data source. These steps are similar to configuring data sources in any on premise Java EE app servers:
+
+### Step 1: Understand how to configure JBoss EAP
+
+In App Service, each instance of an app server is stateless. Therefore, each instance must be configured on startup to support a JBoss EAP configuration needed by your application. 
+
+You can configure at startup by supplying a startup Bash script that calls [JBoss/WildFly CLI commands](https://docs.jboss.org/author/display/WFLY/Command+Line+Interface) to setup data sources, messaging
+providers and any other dependencies. 
+
+Within this repository in the folder ".scripts/3A-postgresql/" there is a pre-written bash startup.sh script. The startup.sh script calls upon "postgresql-datasource-commands.cli" that containing the JBoss/WildFly CLI commands. 
+
+These two scripts are deployed to Azure App Service and then called upon by the App Service on startup to establish the connection to Azure Database for PostgreSQL.
+
+## Source the development environment
 
 Source the environment variables:
 ```bash
@@ -14,28 +30,10 @@ cd /c/git/migrate-java-db-to-azure
 source .scripts/setup-env-variables.sh
 ```
 
-Ensure your Azure CLI is logged into your Azure subscription.
-
->💡 If using Windows, make sure you enter these commands and all others that follow in Git Bash.
-
-```bash
-az login # Sign into an azure account
-az account show # See the currently signed-in account.
-```
-
-Ensure your default subscription is the one you intend to use for this lab, and if not - 
-set the subscription via 
-```az account set --subscription ${SUBSCRIPTION}```
-
 # Configure application to deploy to Azure App Service
-In this section we amend deployment configuration files that are uploaded to Azure App Service as artifacts.
-The first is the persistence.xml and the second is the postgresql-datasource-commands.cli
+In this section we amend the persistence.xml file postgresql-datasource-commands.cli before they're deployed to Azure App Service as artifacts.
 
-These two files are uploaded as artifacts to Azure App Service, alongside the war file and a startup script.
-The startup script is called by Azure App Service on any startup
-The startup script calls the persistence.xml and postgresql-datasource-commands.cli to establish the connection with Azure Database for PostgreSQL 
-
-* Amend the persistence.xml to prevent the deployment dropping and recreating tables in Azure Postgres
+* Amend the persistence.xml to prevent the deployment dropping and recreating tables in Azure Database for PostgreSQL
   * Edit the file "./src/main/resources/META-INF/persistence.xml"
 	```bash
 	vi src/main/resources/META-INF/persistence.xml
@@ -46,29 +44,30 @@ The startup script calls the persistence.xml and postgresql-datasource-commands.
     * Save the edit
 		
 * Amend the Azure Postgres datasource parameters within the ".scripts/3A-postgresql/postgresql-datasource-commands.cli" file
-	The data-source originally in the file is not compatible to establish a connection with Azure Database for PostgreSQL Flexible Server
 
+So it is a valid JDBC connection string to authenticate with Azure Database for PostgreSQL Flexible Server
 	* Edit the postgresql-datasource-commands.cli file
 	```bash    
 	vi .scripts/3A-postgresql/postgresql-datasource-commands.cli
 	```
 	* Delete the data-source line
 	* Replace with the data-source string below.
-
 	```bash
 	data-source add --name=postgresDS --driver-name=postgres --jndi-name=java:jboss/datasources/postgresDS --connection-url=${POSTGRES_CONNECTION_URL,env.POSTGRES_CONNECTION_URL:jdbc:postgresql://db:5432/postgres} --use-ccm=true --max-pool-size=5 --blocking-timeout-wait-millis=5000 --enabled=true --driver-class=org.postgresql.Driver --exception-sorter-class-name=org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLExceptionSorter --jta=true --use-java-context=true --valid-connection-checker-class-name=org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLValidConnectionChecker
 	```
 
 * Edit the pom.xml file for the Maven Deployment into Azure App Service
-Maven uses the pom.xml file to build the WAR file and record the artifacts to transfer to Azure App Service.
 
-  * For the Azure App Service Deployment we need to include the Azure postgresql resources
+Maven uses the pom.xml file to build the WAR file and record the artifacts/resources to deploy to Azure App Service.
+
+  * For the Azure App Service Deployment we need to include our startup.sh script and postgresql-datasource-commands.cli
 	* Edit the file "pom.xml"
   		```bash
 		vi ./pom.xml
 		```
 	
-	* Remove the <resources> lines between the <deployment> section
+	* Remove the lines between <resources> and </resources> within the <deployment> section
+	
 	* Insert the <resources> lines below
 	```xml
           <deployment>
@@ -105,6 +104,20 @@ Maven uses the pom.xml file to build the WAR file and record the artifacts to tr
             </resources>
           </deployment>
 	```
+
+## Verify Azure Subscription and Deploy the Pet Store application to Azure App Service using Maven
+* Ensure your Azure CLI is logged into your Azure subscription.
+
+>💡 If using Windows, make sure you enter these commands and all others that follow in Git Bash.
+
+	```bash
+	az login # Sign into an azure account
+	az account show # See the currently signed-in account.
+	```
+
+Ensure your default subscription is the one you intend to use for this lab, and if not - 
+set the subscription via 
+	```az account set --subscription ${SUBSCRIPTION}```
 
 * Configure the Azure App Service in the pom.xml for Maven
     * Run the maven command below to configure the Azure App Service plugin for Maven
