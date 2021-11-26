@@ -17,11 +17,7 @@ The job that deploys our application will use the Azure CLI, so you will need to
 1. Run the shell commands below to create a Service Principal; replace the placeholders with your app name, resource group, subscription ID, and provide a memorable name for the Service Principal.
 
     ```bash
-    SP_NAME="replace-this-with-a-name"
-    APP_NAME="replace-with-your-webapp-name"
-    RESOURCE_GROUP="your-resource-group"
-    SUBSCRIPTION="your-subscription-id"
-
+    SP_NAME="oss-hack-petstore-sp"
     az ad sp create-for-rbac --name $SP_NAME --sdk-auth --role contributor \
       --scopes /subscriptions/$SUBSCRIPTION/resourceGroups/$RESOURCE_GROUP/providers/Microsoft.Web/sites/$APP_NAME
     ```
