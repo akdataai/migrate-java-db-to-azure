@@ -48,12 +48,14 @@ In this section we amend the persistence.xml file postgresql-datasource-commands
 * Amend the Azure Postgres datasource parameters within the ".scripts/3A-postgresql/postgresql-datasource-commands.cli" file
 
 So it is a valid JDBC connection string to authenticate with Azure Database for PostgreSQL Flexible Server
+
 	* Edit the postgresql-datasource-commands.cli file
 
 	```bash    
 	vi .scripts/3A-postgresql/postgresql-datasource-commands.cli
 	```
 	* Delete the data-source line
+
 	* Replace with the data-source string below
   
 	```bash
