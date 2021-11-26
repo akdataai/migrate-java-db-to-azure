@@ -49,14 +49,14 @@ In this section we amend the persistence.xml file postgresql-datasource-commands
 
 So it is a valid JDBC connection string to authenticate with Azure Database for PostgreSQL Flexible Server
 
-	* Edit the postgresql-datasource-commands.cli file
+  * Edit the postgresql-datasource-commands.cli file
 
 	```bash    
 	vi .scripts/3A-postgresql/postgresql-datasource-commands.cli
 	```
-	* Delete the data-source line
+  * Delete the data-source line
 
-	* Replace with the data-source string below
+  * Replace with the data-source string below
   
 	```bash
 	data-source add --name=postgresDS --driver-name=postgres --jndi-name=java:jboss/datasources/postgresDS --connection-url=${POSTGRES_CONNECTION_URL,env.POSTGRES_CONNECTION_URL:jdbc:postgresql://db:5432/postgres} --use-ccm=true --max-pool-size=5 --blocking-timeout-wait-millis=5000 --enabled=true --driver-class=org.postgresql.Driver --exception-sorter-class-name=org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLExceptionSorter --jta=true --use-java-context=true --valid-connection-checker-class-name=org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLValidConnectionChecker
