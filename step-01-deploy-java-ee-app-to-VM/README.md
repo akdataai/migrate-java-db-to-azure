@@ -288,7 +288,7 @@ The steps below will:
       cd /c/git/migrate-java-db-to-azure
       ```
   * Copy the PostgreSQL persistence file to the META-INF folder for deployment
-  * The Persistence file contains pointers for WildFly to bind to our JDBC datasource (deployed above) and deploy the Pet Store schema and data
+    * The Persistence file contains pointers for WildFly to bind to our JDBC datasource (deployed above) and deploy the Pet Store schema and data
 
       ```bash
       cp .scripts/persistence-postgresql.xml ./src/main/resources/META-INF/persistence.xml
