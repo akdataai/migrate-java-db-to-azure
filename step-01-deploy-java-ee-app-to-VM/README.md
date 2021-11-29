@@ -49,7 +49,6 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
 	    sudo groupadd --system wildfly
 	    sudo useradd -s /sbin/nologin --system -d /opt/wildfly  -g wildfly wildfly
 	    ```
-	
 	*  Place WildFly Service scripts into /etc/wildfly and systemd area
 	    ```bash
 	    sudo mkdir /etc/wildfly
