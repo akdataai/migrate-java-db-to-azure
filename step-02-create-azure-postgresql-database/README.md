@@ -1,4 +1,4 @@
-# 02 - Create a PostgreSQL Database
+# 02 - Create an Azure PostgreSQL Database
 
 __This guide is part of the [migrate Java EE app and PostgreSQL database to Azure training](../README.md)__
 
