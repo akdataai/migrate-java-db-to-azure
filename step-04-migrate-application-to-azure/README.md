@@ -215,10 +215,10 @@ Using Maven you can build and deploy the petstore application into Azure App Ser
 The deployment process will include creating an Azure App Service Plan and JBOSS Linux Web Application Service within the subscription and resource group defined in the setup-env-variables.sh
 
 * Build the Petstore Application Package with the PostgreSQL database artifacts
-	```bash
-	mvn package -Dmaven.test.skip=true -Ddb=postgresql
-	mvn azure-webapp:deploy
-	```
+```bash
+mvn package -Dmaven.test.skip=true -Ddb=postgresql
+mvn azure-webapp:deploy
+```
 
 	```text
 	[INFO] Scanning for projects...
@@ -251,12 +251,12 @@ The deployment process will include creating an Azure App Service Plan and JBOSS
 	```
 
 * Configure Azure App Service with the JDBC PostgreSQL connection parameters to Azure Database for Postgres
-	```bash
-	az webapp config appsettings set \
-		--resource-group ${RESOURCE_GROUP} --name ${WEBAPP} \
-		--settings \
-		POSTGRES_CONNECTION_URL=${POSTGRES_CONNECTION_URL}
-	```
+```bash
+az webapp config appsettings set \
+--resource-group ${RESOURCE_GROUP} --name ${WEBAPP} \
+--settings \
+POSTGRES_CONNECTION_URL=${POSTGRES_CONNECTION_URL}
+```
 
 	Ensure the correct connection URL, Username and Password is returned
 	```text
@@ -272,33 +272,52 @@ The deployment process will include creating an Azure App Service Plan and JBOSS
 
 ## Open Java EE application running on JBoss EAP in App Service Linux
 
-Open the Java EE application running on JBoss EAP in App Service Linux:
-```bash
-open https://${WEBAPP}.azurewebsites.net
-```
-![](./media/YAPS-PetStore-H2.jpg)
+* Navigate to the created App Service in the Azure Portal
+* Click the URL to open a browser to the site
+<img src="media/MigTargetAzurePostgreSQLTables.png" width=500 align=centre>
 
-You can also `curl` the REST API exposed by the Java EE application. The admin REST 
-API allows you to create/update/remove items in the catalog, orders or customers. 
-You can run the following curl commands:
-```bash
-curl -X GET https://${WEBAPP}.azurewebsites.net/rest/categories
-curl -X GET https://${WEBAPP}.azurewebsites.net/rest/products
-curl -X GET https://${WEBAPP}.azurewebsites.net/rest/items
-curl -X GET https://${WEBAPP}.azurewebsites.net/rest/countries
-curl -X GET https://${WEBAPP}.azurewebsites.net/rest/customers
-```
+* Validate the Petstore Application is started
+  * If the site does not load restart the App Service
+  * Open a new browser window to the site
+* Navigate to the Admin area
+* Navigate to the customers to validate the data exists
 
-You can also get a JSON representation:
+* You can also get a JSON extract from the Azure App Service of customer data:
 ```bash
-curl -X GET -H "accept: application/json" https://${WEBAPP}.azurewebsites.net/rest/items
+curl -X GET -H "accept: application/json" https://${WEBAPP}.azurewebsites.net/rest/customers
 ```
-
-Check the Java EE application's Swagger contract:
+* Check the Java EE application's Swagger contract:
 ```bash
 curl -X GET https://${WEBAPP}.azurewebsites.net/swagger.json
 ```
 
+## Complete Cutover to Azure
+At this point the Pet Store application data is being replicated from our on-premises database to Azure. The Application deployed into Azure is connected to the target Azure Database for PostgreSQL.
+
+To cutover from on-premises to Azure
+* Update a row in the on-premises data and validate the data change in the Azure App Service
+  * Using psql connect to the on-premises database
+	```bash
+	psql "dbname=postgres host=10.0.1.4 user=postgres password=Demopass1234567 port=5432"
+	```
+  * Update a customer in the customer table
+	```bash
+	update customer set first_name='John; where id=1002;
+	```
+* Open a session to the Azure App Service
+  * Navigate to the Admin area
+  * Validate the customer change has replicated to Azure Database for PostgreSQL
+
+* Once the data validation is complete 
+  * Within the Azure Portal navigate to the deployed Database Migration Service
+	<img src="media/DataMigrationService.png" width=500 align=centre>
+  * Navigate to the Database Migration Service Project
+	<img src="media/DataMigrationServiceProject.png" width=500 align=centre>
+  * From here you can initiate cut over, by selecting "Start Cutover"
+  * This will break the replication between the on-premises PostgreSQL database and Azure Database for PostgreSQL
+	<img src="media/DataMigrationServiceCutover.png" width=500 align=centre>
+
+# Congratulations You've Migrated a Java Application and PostgreSQL Database to Azure!
 ---
 
 ⬅️ Previous guide: [03 - Migrate on-premises PostgreSQL database to Azure ](../step-03-migrate-database-to-azure/README.md)
