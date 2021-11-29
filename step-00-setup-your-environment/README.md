@@ -75,9 +75,8 @@ Within your Azure subscription the Bicep template within this repository can be 
       * direct download link [here](https://go.microsoft.com/fwlink/?linkid=2108834&Channel=Stable&language=en)
   
     * JDK 1.8
-    *  Direct download link [here](https://cdn.azul.com/zulu/bin/zulu8.58.0.13-ca-jdk8.0.312-win_x64.msi)
+      *  Direct download link [here](https://cdn.azul.com/zulu/bin/zulu8.58.0.13-ca-jdk8.0.312-win_x64.msi)
       * As part of the installation select the option to set the JAVA_HOME
-        * The step above will set the environment variable `JAVA_HOME` to the path of `javac` for this JDK installation.
   
   ![JDK Installation](media/AzulZuluJDKInstallation.png)
   
