@@ -216,9 +216,7 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
       psql "dbname=postgres host=10.0.1.4 user=postgres password=Demopass1234567 port=5432"
       ```
       
-
-# Deploy Pet Store Application to WildFly and PostgreSQL
-# Deploy Pet Store Application On-Premises
+# Deploy Pet Store Application On-Premises to WildFly and PostgreSQL
 
 In this section we will deploy our Java Pet Store application to the on-premises VM. 
 The steps below will:
