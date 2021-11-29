@@ -72,7 +72,7 @@ Maven uses the pom.xml file to build the WAR file and record the artifacts/resou
 		vi ./pom.xml
 		```
 	
-	* Remove the lines between <resources> and </resources> within the <deployment> section
+	* Remove the lines between "<resources>" and "</resources>" within the "<deployment>" section
 	
 	* Insert the <resources> lines below
 	```xml
