@@ -176,47 +176,53 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
     * Edit the pg_hba.conf
     * Set IPv4 to accept connections from all addresses
     * Set the local and IPv4 connection method to trust (not ident)
-    ```bash
-    vi /var/lib/pgsql/data/pg_hba.conf
-    ```
-    ```text
-	        # TYPE  DATABASE        USER            ADDRESS                 METHOD
-	        # "local" is for Unix domain socket connections only
-	        local   all             all                                     trust
-	        # IPv4 local connections:
-	        host    all             all             0.0.0.0/0               trust
-    ```
+      ```bash
+      vi /var/lib/pgsql/data/pg_hba.conf
+      ```
+      ```text
+            # TYPE  DATABASE        USER            ADDRESS                 METHOD
+            # "local" is for Unix domain socket connections only
+            local   all             all                                     trust
+            # IPv4 local connections:
+            host    all             all             0.0.0.0/0               trust
+      ```
     
     * Configure PostgreSQL to listen on all addresses
       * Uncomment the listen_address parameter
       * Set the listen_address to * for all addresses
-    ```bash
-    vi /var/lib/pgsql/data/postgresql.conf
-    ```
-    ```text
-	        listen_addresses = '*'
-    ```
+      ```bash
+      vi /var/lib/pgsql/data/postgresql.conf
+      ```
+      ```text
+            listen_addresses = '*'
+      ```
     
     * Restart PostgreSQL
-    ```bash
-    sudo systemctl restart postgresql
-    ```
+      ```bash
+      sudo systemctl restart postgresql
+      ```
     
     * Using the PostgreSQL psql client
     * Set the "postgresql" user password to a new one (example below uses the password Demopass1234567)
-    ```bash
-    psql -U postgres postgres
-    ```
-    ```bash
-    alter user postgres password 'Demopass1234567';
-    ```
+      ```bash
+      psql -U postgres postgres
+      ```
+      ```bash
+      alter user postgres password 'Demopass1234567';
+      ```
     * Exit the psql client using "\q"
     * Check connection to PostgreSQL
-    ```bash
-    psql "dbname=postgres host=10.0.1.4 user=postgres password=Demopass1234567 port=5432"
-    ```
+      ```bash
+      psql "dbname=postgres host=10.0.1.4 user=postgres password=Demopass1234567 port=5432"
+      ```
 
 ## Deploy Pet Store Application to WildFly and PostgreSQL
+
+In this section we will deploy our Java Pet Store application to the on-premises VM. 
+The steps below will:
+  Configure WildFly to talk with the on-premises PostgreSQL database.
+  Deploy the Pet Store Java application to run on WildFly, through the deployment the PostgreSQL database will be populated with data
+
 
 * From the Lab VM "oss-hack-rdp"
   * Download PostgreSQL JDBC driver to the Lab VM
@@ -282,6 +288,8 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
       cd /c/git/migrate-java-db-to-azure
       ```
   * Copy the PostgreSQL persistence file to the META-INF folder for deployment
+      The Persistence file contains pointers for WildFly to bind to our JDBC datasource (deployed above) and deploy the Pet Store schema and data
+      
       ```bash
       cp .scripts/persistence-postgresql.xml ./src/main/resources/META-INF/persistence.xml
       ```
