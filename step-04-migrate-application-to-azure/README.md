@@ -123,13 +123,15 @@ Maven uses the pom.xml file to build the WAR file and record the artifacts/resou
 
 Ensure your default subscription is the one you intend to use for this lab, and if not - 
 set the subscription via 
-	```az account set --subscription ${SUBSCRIPTION}```
+	```bash
+	az account set --subscription ${SUBSCRIPTION}
+	```
 
 * Configure the Azure App Service in the pom.xml for Maven
     * Run the maven command below to configure the Azure App Service plugin for Maven
-  		```bash
-		mvn com.microsoft.azure:azure-webapp-maven-plugin:1.16.1:config
-		```
+  	```bash
+	mvn com.microsoft.azure:azure-webapp-maven-plugin:1.16.1:config
+	```
 	* Supply the Azure Application name given in setup-env-variables.sh (e.g. petstore-<initial>-location)
     * Supply the Resource Group name
     * Supply the location
