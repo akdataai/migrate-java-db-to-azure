@@ -218,7 +218,6 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
       
 
 # Deploy Pet Store Application to WildFly and PostgreSQL
-
 In this section we will deploy our Java Pet Store application to the on-premises VM. 
 The steps below will:
   Configure WildFly to talk with the on-premises PostgreSQL database.
