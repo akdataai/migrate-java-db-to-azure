@@ -310,14 +310,15 @@ To cutover from on-premises to Azure
 
 * Once the data validation is complete 
   * Within the Azure Portal navigate to the deployed Database Migration Service
-<img src="media/DataMigrationService.png" width=500 align=centre>
+	<img src="media/DataMigrationService.png" width=500 align=centre>
 
   * Navigate to the Database Migration Service Project
-<img src="media/DataMigrationServiceProject.png" width=500 align=centre>
+  
+	<img src="media/DataMigrationServiceProject.png" width=500 align=centre>
 
   * From here you can initiate cut over, by selecting "Start Cutover"
   * This will break the replication between the on-premises PostgreSQL database and Azure Database for PostgreSQL
-<img src="media/DataMigrationServiceCutover.png" width=500 align=centre>
+	<img src="media/DataMigrationServiceCutover.png" width=500 align=centre>
 
 # Congratulations You've Migrated a Java Application and PostgreSQL Database to Azure!
 ---
