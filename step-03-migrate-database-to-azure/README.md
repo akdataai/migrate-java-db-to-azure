@@ -15,17 +15,17 @@ The Azure Database Migration Service can be used to perform an online migration 
 To use the Azure Database Migration Service 
   * Within your Resource Group
   * Create the Database Migration Serivce resource 
-      <img src="media/AzureDatabaseMigrationService.png" width=500 align=centre>
+<img src="media/AzureDatabaseMigrationService.png" width=500 align=centre>
       * Select the option to "Migrate my SQL Server, MySQL, PostgreSQL or MongoDB database(s) to Azure"
       * Provide the "Migration Service Name" (e.g. oss-hack-pg-mig-svc)
       * Choose the "Location" to be the same as your Azure Resource Group and Resources
       * Change the "Pricing tier" to Premium 
           Note. Standard tier does not provide online migration capabilities
-      <img src="media/AzureDatabaseMigrationServiceTier.png" width=500 align=centre>
+<img src="media/AzureDatabaseMigrationServiceTier.png" width=500 align=centre>
     * Select Next to move onto the Networking settings
-      <img src="media/CreateMigrationServiceBasics.png" width=500 align=centre>
+<img src="media/CreateMigrationServiceBasics.png" width=500 align=centre>
     * Deploy the Migration Service into the on-premises PgSubnet virtual network
-      <img src="media/AzureMigrationServiceNetworking.png" width=500 align=centre>
+<img src="media/AzureMigrationServiceNetworking.png" width=500 align=centre>
     * Accept the defaults for the remaining options and deploy
 
 # Setup Azure Database Migration Project
@@ -93,16 +93,16 @@ Following the schema creation in Azure PostgreSQL continue to build the migratio
         Minimal removes all logging except the information required to recover from a crash or immediate shutdown. 
         Logical adds information necessary to support logical decoding. 
       
-    * Set the on-premises PostgreSQL wal_level parameter to logical, using psql, and restart:
-      ```bash
-      psql "dbname=postgres host=10.0.1.4 user=postgres password=Demopass1234567 port=5432"
-      ALTER SYSTEM SET wal_level = logical;
-      \q
-      ```
-    * Restart the PostgreSQL service
-      ```bash
-      sudo systemctl restart postgresql
-      ```
+  * Set the on-premises PostgreSQL wal_level parameter to logical, using psql, and restart:
+    ```bash
+    psql "dbname=postgres host=10.0.1.4 user=postgres password=Demopass1234567 port=5432"
+    ALTER SYSTEM SET wal_level = logical;
+    \q
+    ```
+  * Restart the PostgreSQL service
+    ```bash
+    sudo systemctl restart postgresql
+    ```
 
     * Once the wal_level is set return to the Migration Wizard and Continue 
     * Configure the target Azure Database for PostgreSQL 
