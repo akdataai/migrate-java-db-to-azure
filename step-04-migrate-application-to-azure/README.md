@@ -116,16 +116,17 @@ Maven uses the pom.xml file to build the WAR file and record the artifacts/resou
 
 >💡 If using Windows, make sure you enter these commands and all others that follow in Git Bash.
 
-	```bash
-	az login # Sign into an azure account
-	az account show # See the currently signed-in account.
-	```
+```bash
+az login # Sign into an azure account
+az account show # See the currently signed-in account.
+```
 
 Ensure your default subscription is the one you intend to use for this lab, and if not - 
 set the subscription via 
-	```bash
-	az account set --subscription ${SUBSCRIPTION}
-	```
+
+```bash
+az account set --subscription ${SUBSCRIPTION}
+```
 
 * Configure the Azure App Service in the pom.xml for Maven
     * Run the maven command below to configure the Azure App Service plugin for Maven
