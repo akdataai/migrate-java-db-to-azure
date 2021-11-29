@@ -340,4 +340,4 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
 
 ⬅️ Previous guide: [00 - Prerequisites and Setup](../step-00-setup-your-environment/README.md)
 
-➡️ Next guide: [02 - Create a database](../step-02-create-azure-postgresql-database/README.md)
+➡️ Next guide: [02 - Create an Azure PostgreSQL database](../step-02-create-azure-postgresql-database/README.md)
