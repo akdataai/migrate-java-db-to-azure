@@ -139,6 +139,7 @@ set the subscription via
 <img src="media/MavenAppServiceConfigPom.png" width=500 align=centre>
 
     * Maven will return the successful configuration
+  
 	```text
 		[INFO] Scanning for projects...
 		[INFO]
