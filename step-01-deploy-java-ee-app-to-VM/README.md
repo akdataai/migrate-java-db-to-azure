@@ -4,7 +4,7 @@ __This guide is part of the [migrate Java EE app to Azure training](../README.md
 
 Basics on configuring Maven and deploying a Java EE application to Azure.
 
-## Deploy Pet Store Application to Linux VM "oss-hack-pg"
+# Deploy Pet Store Application to Linux VM "oss-hack-pg"
     
 * From the RDP "oss-hack-rdp" launch Putty and save a session for the oss-hack-pgsql VM
 * Set the Hostname as 10.0.1.4
@@ -216,7 +216,7 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
       psql "dbname=postgres host=10.0.1.4 user=postgres password=Demopass1234567 port=5432"
       ```
 
-## Deploy Pet Store Application to WildFly and PostgreSQL
+# Deploy Pet Store Application to WildFly and PostgreSQL
 
 In this section we will deploy our Java Pet Store application to the on-premises VM. 
 The steps below will:
@@ -288,8 +288,8 @@ The steps below will:
       cd /c/git/migrate-java-db-to-azure
       ```
   * Copy the PostgreSQL persistence file to the META-INF folder for deployment
-      The Persistence file contains pointers for WildFly to bind to our JDBC datasource (deployed above) and deploy the Pet Store schema and data
-      
+  * The Persistence file contains pointers for WildFly to bind to our JDBC datasource (deployed above) and deploy the Pet Store schema and data
+
       ```bash
       cp .scripts/persistence-postgresql.xml ./src/main/resources/META-INF/persistence.xml
       ```
