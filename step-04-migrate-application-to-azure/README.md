@@ -72,7 +72,7 @@ Maven uses the pom.xml file to build the WAR file and record the artifacts/resou
 		vi ./pom.xml
 		```
 
-	* Remove the "resources" lines within the "deployment" section
+	* Remove the "resources" lines within the "deployment" section, leaving the section empty.
 	
 	* Insert the <resources> lines below
 	```xml
@@ -139,7 +139,7 @@ set the subscription via
 <img src="media/MavenAppServiceConfigPom.png" width=500 align=centre>
 
     * Maven will return the successful configuration
-		```text
+	```text
 		[INFO] Scanning for projects...
 		[INFO]
 		[INFO] ----------------< org.agoncal.application:petstoreee7 >-----------------
@@ -164,7 +164,7 @@ set the subscription via
 		[INFO] Total time:  01:46 min
 		[INFO] Finished at: 2021-11-25T16:42:33Z
 		[INFO] ------------------------------------------------------------------------
-		```
+	```
 
 * Once complete the pom.xml will be updated to include Azure App Service plugin
 	
