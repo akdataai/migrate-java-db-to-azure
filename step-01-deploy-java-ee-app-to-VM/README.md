@@ -280,7 +280,7 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
       * Select the Server petstorevm
       * Select reload
 
-# Package Pet Store application to deploy
+# Package Pet Store Application to Deploy
   * Launch Git Bash session
   * Navigate to the git package
       ```bash
