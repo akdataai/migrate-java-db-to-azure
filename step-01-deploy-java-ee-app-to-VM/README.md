@@ -256,8 +256,8 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
      
     * Give the JNDI Name as
       ```text
-        java:jboss/datasources/postgresDS
-        ```
+      java:jboss/datasources/postgresDS
+      ```
     <img src="media/JDBCJNDIName.png" width=500 align=centre>
     
     * Select the PostgreSQL Driver (Downloaded above)
