@@ -24,10 +24,10 @@ Within your Azure subscription the Bicep template within this repository can be 
         ```bash
           cd git
           git clone https://github.com/akdataai/migrate-java-db-to-azure.git
-          ````
+        ````
     * Navigate to the bicep folder 
         ```bash
-        cd .scripts/bicep-vm/
+        cd migrate-java-db-to-azure/.scripts/bicep-vm/
         ```
     * Edit "./parameters/parameters.json" to reflect the resource group to deploy into and providing the login user and password for the VMs
         ```bash
