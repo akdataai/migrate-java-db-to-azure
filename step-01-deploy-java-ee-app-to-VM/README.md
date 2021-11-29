@@ -5,6 +5,8 @@ __This guide is part of the [migrate Java EE app to Azure training](../README.md
 Basics on configuring Maven and deploying a Java EE application to Azure.
 
 # Deploy Pet Store Application to Linux VM "oss-hack-pg"
+
+## Prepare On-Premises Linux VM to host Pet Store Application and Database
     
 * From the RDP "oss-hack-rdp" launch Putty and save a session for the oss-hack-pgsql VM
 * Set the Hostname as 10.0.1.4
@@ -280,7 +282,7 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
       * Select the Server petstorevm
       * Select reload
 
-# Package Pet Store Application to Deploy
+## Package Pet Store Application to Deploy
   * Launch Git Bash session
   * Navigate to the git package
       ```bash
@@ -304,7 +306,7 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
       ```
 
 
-# Deploy Pet Store Application to Wildfly
+## Deploy Pet Store Application to Wildfly
   * Login to Administration Console
     http://10.0.1.4:9990
   * Add a new deployment
@@ -313,11 +315,10 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
   * Select next through to deploy
 <img src="media/DeployPetstoreJar.png" width=500 align=centre>
 
-# In browser test the application is running:
   * Using Edge upon the RDP navigate to 
     http://10.0.1.4:8080/applicationPetstore/shopping/main.xhtml
 
-# Check the deployment has populated the PostgreSQL database
+## Check the deployment has populated the PostgreSQL database
   * Using psql from Git Bash connect to PostgreSQL and check the tables and records have been deployed 
       ```bash
       psql "dbname=postgres host=10.0.1.4 user=postgres password=Demopass1234567 port=5432"
