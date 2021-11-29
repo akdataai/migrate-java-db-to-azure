@@ -215,6 +215,7 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
       ```bash
       psql "dbname=postgres host=10.0.1.4 user=postgres password=Demopass1234567 port=5432"
       ```
+      
 
 # Deploy Pet Store Application to WildFly and PostgreSQL
 
