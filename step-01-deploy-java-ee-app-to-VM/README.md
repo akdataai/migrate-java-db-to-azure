@@ -216,12 +216,12 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
       ```bash
       psql "dbname=postgres host=10.0.1.4 user=postgres password=Demopass1234567 port=5432"
       ```
-# Deploy Pet Store Application On-Premises to WildFly and PostgreSQL
+
+# Deploy Pet Store Application On-Premises to WildFly and PostgreSQL
 * In this section we will deploy our Java Pet Store application to the on-premises VM. 
   * The steps below will:
     * Configure WildFly to talk with the on-premises PostgreSQL database.
     * Deploy the Pet Store Java application to run on WildFly, through the deployment the PostgreSQL database will be populated with data
-
 
 * From the Lab VM "oss-hack-rdp"
   * Download PostgreSQL JDBC driver to the Lab VM
