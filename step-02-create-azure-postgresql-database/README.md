@@ -33,7 +33,7 @@ export them to your local environment.
 cd /c/git/migrate-java-db-to-azure/
 vi .scripts/setup-env-variables.sh
 ```
-```text
+	```text
 	#!/usr/bin/env bash
 	
 	# Azure Environment
@@ -68,7 +68,7 @@ vi .scripts/setup-env-variables.sh
 	
 	#IPCONFIG
 	export DEVBOX_IP_ADDRESS=$(curl ifconfig.me)
-```
+	```
 * Source the environment variables:
 ```bash
 source .scripts/setup-env-variables.sh
