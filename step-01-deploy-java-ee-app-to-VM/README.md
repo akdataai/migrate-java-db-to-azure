@@ -209,7 +209,7 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
       psql -U postgres postgres
       ```
       ```bash
-      alter user postgres password 'Demopass1234567';
+      alter user postgres WITH password 'Demopass1234567';
       ```
     * Exit the psql client using "\q"
     * Check connection to PostgreSQL
