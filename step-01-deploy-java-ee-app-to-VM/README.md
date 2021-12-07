@@ -73,6 +73,8 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
     ```bash
     ss -tunelp | grep 8080
     ```
+
+    The line below validates that port 8080 is being listened on
     ```text	
       tcp   LISTEN 0      128          0.0.0.0:8080      0.0.0.0:*    users:(("java",pid=79152,fd=483)) uid:991 ino:358878 sk:10 <-> 
     ```
@@ -142,9 +144,25 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
       ```bash
       vi /opt/wildfly/bin/launch.sh
       ```
+      Add to "-bmanagement=0.0.0.0" to the line below
       ```text
       $WILDFLY_HOME/bin/standalone.sh -c $2 -b $3 -bmanagement=0.0.0.0
       ```
+
+      The file should look like as below
+      ``` text
+      #!/bin/bash
+      if [ "x$WILDFLY_HOME" = "x" ]; then
+          WILDFLY_HOME="/opt/wildfly"
+      fi
+
+      if [[ "$1" == "domain" ]]; then
+          $WILDFLY_HOME/bin/domain.sh -c $2 -b $3
+      else
+          $WILDFLY_HOME/bin/standalone.sh -c $2 -b $3 -bmanagement=0.0.0.0
+      fi
+      ```
+
   * Restart WildFly
     ```bash
     systemctl restart wildfly
@@ -175,6 +193,7 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
 
   * Configure PostgreSQL to listen and permit connections on all network devices
     * Edit the pg_hba.conf
+    * Navigate to the bottom of the file (hint SHIFT+G in vi)
     * Set IPv4 to accept connections from all addresses
     * Set the local and IPv4 connection method to trust (not ident)
       ```bash
@@ -185,7 +204,7 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
             # "local" is for Unix domain socket connections only
             local   all             all                                     trust
             # IPv4 local connections:
-            host    all             all             0.0.0.0/0               trust
+            host    all             all             0.0.0.0/0               password
       ```
     
     * Configure PostgreSQL to listen on all addresses
@@ -244,8 +263,8 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
 
   * When prompted reload WildFly
     * If there is no prompt reload manually in the console
-      * Navigate to Runtime
-      * Select the Server petstorevm
+      * Navigate to Runtime 
+      * At the Server "oss-vm-pg" hit the drop down 
       * Select reload
   
   * Now create the PostgreSQL Data Source
@@ -277,7 +296,7 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
   * When prompted reload WildFly
     * If there is no prompt reload manually in the console
       * Navigate to Runtime
-      * Select the Server petstorevm
+      * At the Server "oss-vm-pg" hit the drop down 
       * Select reload
 
 ## Package Pet Store Application to Deploy
@@ -309,7 +328,7 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
     http://10.0.1.4:9990
   * Add a new deployment
   * Select the application Petstore.war
-    * c:\git\migrate-javaee-app-to-azure-training\target\applicationPetstore.war
+    * c:\git\migrate-java-db-to-azure\target\applicationPetstore.war
   * Select next through to deploy
 <img src="media/DeployPetstoreJar.png" width=500 align=centre>
 
@@ -317,7 +336,7 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
     http://10.0.1.4:8080/applicationPetstore/shopping/main.xhtml
 
 ## Check the deployment has populated the PostgreSQL database
-  * Using psql from Git Bash connect to PostgreSQL and check the tables and records have been deployed 
+  * Using psql from Putty connect to PostgreSQL and check the tables and records have been deployed 
       ```bash
       psql "dbname=postgres host=10.0.1.4 user=postgres password=Demopass1234567 port=5432"
       postgres=# \dt

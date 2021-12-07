@@ -86,7 +86,7 @@ Following the schema creation in Azure PostgreSQL continue to build the migratio
 
   * Select Create
   * Provide the Source Details
-    * Source Server Name - Use the VM IP address (i.e. 10.0.1.4)
+    * Source Server Name - Use the oss-hack-pgsql VM IP address (i.e. 10.0.1.4)
   * Provide the Server port
   * Provide the Database (i.e. postgres)
   * Provide the Username (i.e. postgres) 
