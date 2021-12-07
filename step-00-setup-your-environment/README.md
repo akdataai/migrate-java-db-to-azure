@@ -96,7 +96,7 @@ Within your Azure subscription the Bicep template within this repository can be 
     <img src="media/SystemEnvironmentVariables.png" width=500 align=centre>
     
     * PostgreSQL Database tools (Optional):
-      * [PostgreSQL CLI](https://www.postgresql.org/docs/current/app-psql.html)
+      * [PostgreSQL CLI](https://www.pgadmin.org/download/pgadmin-4-windows/)
     
     * The [`jq` utility](https://stedolan.github.io/jq/download/). 
         * Direct download link [here](https://github.com/stedolan/jq/releases/download/jq-1.6/jq-win64.exe)
