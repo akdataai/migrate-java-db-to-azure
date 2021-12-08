@@ -92,6 +92,8 @@ set the subscription via
 
 ## Create and configure Petstore database in Azure Database for PostgreSQL
 
+To learn more about Azure Database for PostgreSQL see the documentation library (here)[https://docs.microsoft.com/en-us/azure/postgresql/]
+
 * Within Git Bash using Azure CLI login to Azure
 * Git Bash will prompt to login using the browser
 * Select the link and complete the Azure authentication process
@@ -114,9 +116,6 @@ az postgres flexible-server create --resource-group oss-hack \
 
 ## Check database connectivity using psql
 
-  
->💡 - you can reinstall `psql` command line tool using `brew reinstall postgresql`.
-  
 When you migrate Java applications to cloud, you will be considering moving data to cloud. 
 To accelerate your transition to cloud, 
 Azure offers plenty of options to [migrate your data](https://azure.microsoft.com/en-us/services/database-migration/) 

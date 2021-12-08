@@ -12,6 +12,10 @@ In a controlled environment the Azure PostgreSQL database would be created withi
 # Deploy Azure Database Migration Service - Premium SKU
 The Azure Database Migration Service can be used to perform an online migration for the on-premises PostgreSQL database to Azure Database for PostgreSQL.
 
+To learn more about the Database Migration Service and the correct deployment review the documentation (here)[https://docs.microsoft.com/en-gb/azure/dms/pre-reqs]
+
+A tutorial covering the migration of PostgreSQL using the DMS can be found (here)[https://docs.microsoft.com/en-us/azure/dms/tutorial-postgresql-azure-postgresql-online]
+
 Deploy the Azure Database Migration Service following the steps below:
 * Create the Database Migration Serivce resource 
 

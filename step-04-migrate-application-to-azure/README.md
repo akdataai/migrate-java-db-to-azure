@@ -11,18 +11,24 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
 
 There are 3 steps to configure a data source. These steps are similar to configuring data sources in any on premise Java EE app servers:
 
-### Step 1: Understand how to configure JBoss EAP
+### Understand how to configure JBoss EAP
 
 In App Service, each instance of an app server is stateless. Therefore, each instance must be configured on startup to support a JBoss EAP configuration needed by your application. 
 
-You can configure at startup by supplying a startup Bash script that calls [JBoss/WildFly CLI commands](https://docs.jboss.org/author/display/WFLY/Command+Line+Interface) to setup data sources, messaging
-providers and any other dependencies. 
+To learn more about deploying apps seamlessly with Red Hat JBoss EAP on Azure App Service see the guide (here)[https://azure.microsoft.com/en-gb/blog/deploy-apps-seamlessly-with-red-hat-jboss-eap-on-azure-app-service-now-generally-available/]
 
-Within this repository in the folder ".scripts/3A-postgresql/" there is a pre-written bash startup.sh script. The startup.sh script calls upon "postgresql-datasource-commands.cli" that containing the JBoss/WildFly CLI commands. 
 
-These two scripts are deployed to Azure App Service and then called upon by the App Service on startup to establish the connection to Azure Database for PostgreSQL.
+# Prepare a JBoss EAP startup script to deploy to Azure App Service
+As part of this deployment a Bash startup is deployed that calls [JBoss/WildFly CLI commands](https://docs.jboss.org/author/display/WFLY/Command+Line+Interface) to setup data sources, messaging
+providers and other dependencies.
 
-## Source the development environment
+Prepared scripts can be found within the repository in the folder ".scripts/3A-postgresql/" here you will find
+* A pre-written bash startup.sh script
+* The script "postgresql-datasource-commands.cli" that contains the JBoss/WildFly CLI commands to setup the connection to PostgreSQL
+
+These two scripts are deployed to Azure App Service where the startup.sh script is called and runs postgresql-datasource-commands.cli to establish the connection to Azure Database for PostgreSQL.
+
+# Source the development environment
 
 Source the environment variables:
 ```bash
@@ -30,8 +36,8 @@ cd /c/git/migrate-java-db-to-azure
 source .scripts/setup-env-variables.sh
 ```
 
-# Configure application to deploy to Azure App Service
-In this section we amend the persistence.xml file postgresql-datasource-commands.cli before they're deployed to Azure App Service as artifacts.
+# Configure application deployment scripts for the deployment to Azure App Service
+In this section we amend the persistence.xml and postgresql-datasource-commands.cli configuration files before they are deployed to Azure App Service.
 
 * Amend the persistence.xml to prevent the deployment dropping and recreating tables in Azure Database for PostgreSQL
   * Edit the file "./src/main/resources/META-INF/persistence.xml"
@@ -45,10 +51,9 @@ In this section we amend the persistence.xml file postgresql-datasource-commands
   
     * Save the edit
 		
-* Amend the Azure Postgres datasource parameters within the ".scripts/3A-postgresql/postgresql-datasource-commands.cli" file
-
-So it is a valid JDBC connection string to authenticate with Azure Database for PostgreSQL Flexible Server
-
+* Amend the Azure Postgres datasource parameters within the ".scripts/3A-postgresql/postgresql-datasource-commands.cli" file 
+  Here update the "connection-url" within the "data-source" section to use a JDBC connection string that is defined in our environment variables (POSTGRES_CONNECTION_URL).
+  
   * Edit the postgresql-datasource-commands.cli file
 
 	```bash    
