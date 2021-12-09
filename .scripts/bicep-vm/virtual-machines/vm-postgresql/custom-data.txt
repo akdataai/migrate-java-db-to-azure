@@ -5,7 +5,7 @@ packages:
     - wget
 runcmd:
     - cd /root
-    - wget https://gist.githubusercontent.com/Sam-Rowe/1c4793e1e1ed865302b677f7df684c4f/raw/d3c41f888a3376476500ef1f422f76c5afe68754/WildflyBootstrap.sh
+    - wget https://gist.githubusercontent.com/Sam-Rowe/1c4793e1e1ed865302b677f7df684c4f/raw/37c3ed0987cb98cd207aa55e1f4bbe338ee036cb/WildflyBootstrap.sh
     - wget https://gist.githubusercontent.com/Sam-Rowe/50497dab992d6bc7a88bcb50828550ae/raw/b93d6ed9abafa7a183ac19bedf9c43f9a3e1bf19/SetPostgresUserAccountPassword.sql
     - sudo bash WildflyBootstrap.sh 
     - cat "Hello this has run the cmd at the end of the cloud init script" >> hello.md
