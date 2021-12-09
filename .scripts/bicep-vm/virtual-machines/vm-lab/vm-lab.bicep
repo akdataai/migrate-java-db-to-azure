@@ -20,6 +20,7 @@ module vm_pgsql '../general/vm-small/vm-small.bicep' = {
     username: username
     password: password
     privateIPAddress:  '10.1.0.4'
+    customData: ''
   }
 }
 
