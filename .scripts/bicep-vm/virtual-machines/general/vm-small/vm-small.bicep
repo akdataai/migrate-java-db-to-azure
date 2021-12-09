@@ -10,6 +10,7 @@ param password string
 param OSPublisher string
 param OSOffer string
 param privateIPAddress string
+param customData string
 
 var vmName = namePrefix
 
@@ -52,6 +53,7 @@ resource vm_small 'Microsoft.Compute/virtualMachines@2019-07-01' = {
       computerName: vmName
       adminUsername: username
       adminPassword: password
+      customData: customData
     }
     networkProfile: {
       networkInterfaces: [
