@@ -17,58 +17,7 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
 * Select the saved session and hit Open
 * Login to the VM us the username and password
 
-* Prepare for WildFly installation
-    * Sudo to root
-        ```bash
-        sudo su - 
-        ```
-    * Update the VM OS
-        ```bash
-        yum update -y 
-        ```
-    * Install Java 8 JDK
-        ```bash
-        yum install -y java-1.8.0-openjdk-devel
-        java -version
-        ```
-    * Install wget
-        ```bash
-        yum -y install wget
-        ```
-    * Install WildFly 
-        ```bash
-        export WILDFLY_RELEASE="25.0.1"
-        wget https://github.com/wildfly/wildfly/releases/download/25.0.1.Final/wildfly-25.0.1.Final.tar.gz
-        tar xvf wildfly-$WILDFLY_RELEASE.Final.tar.gz
-        mv wildfly-25.0.1.Final /opt/wildfly
-        ```
-    
-   * Configure WildFly to run as a service within Linux
-    	* Create a service user for Wildfly 
-	    ```bash
-	    sudo groupadd --system wildfly
-	    sudo useradd -s /sbin/nologin --system -d /opt/wildfly  -g wildfly wildfly
-	    ```
-	*  Place WildFly Service scripts into /etc/wildfly and systemd area
-	    ```bash
-	    sudo mkdir /etc/wildfly
-	    sudo cp /opt/wildfly/docs/contrib/scripts/systemd/wildfly.conf /etc/wildfly/
-	    sudo cp /opt/wildfly/docs/contrib/scripts/systemd/wildfly.service /etc/systemd/system/
-	    sudo cp /opt/wildfly/docs/contrib/scripts/systemd/launch.sh /opt/wildfly/bin/
-	    sudo chmod +x /opt/wildfly/bin/launch.sh
-	    sudo chown -R wildfly:wildfly /opt/wildfly
-	    ```
-  * Reload the Services Daemon and Start WildFly as a service
-      ```bash
-      sudo systemctl daemon-reload
-      sudo restorecon -Rv /opt/wildfly/bin/
-      setenforce 0
-      sudo systemctl start wildfly
-      sudo systemctl enable wildfly
-      ```
-      ```bash
-      systemctl status wildfly
-      ```
+
   * Check the WildFly service is running on port 8080
     ```bash
     ss -tunelp | grep 8080
@@ -79,162 +28,33 @@ Basics on configuring Maven and deploying a Java EE application to Azure.
       tcp   LISTEN 0      128          0.0.0.0:8080      0.0.0.0:*    users:(("java",pid=79152,fd=483)) uid:991 ino:358878 sk:10 <-> 
     ```
     
-  * Add a WildFly Management User for the portal (example is below)
-	  * Run the script /opt/wildfly/bin/add-user.sh 
-      ```bash
-      sudo /opt/wildfly/bin/add-user.sh
-      ```
-	  * Choose to add a Management user
-	  * Provide a username
-	  * Provide a password
-	  * Leave the groups blank
-	  * Confirm (yes) adding the user to the realm 'ManagementRealm'
-	  * Confirm (yes) for the user to connect to the master or for a remote connection
-        
-      * Example execution
-          ```text
-           # sudo /opt/wildfly/bin/add-user.sh
-              What type of user do you wish to add? 
-              a) Management User (mgmt-users.properties) 
-              b) Application User (application-users.properties)
-              (a): a
+  * A WildFly Management User has been added for the portal
 
-              Enter the details of the new user to add.
-              Using realm 'ManagementRealm' as discovered from the existing property files.
-              
-              Username : wildflyAdmin
-              Password recommendations are listed below. To modify these restrictions edit the add-user.properties configuration file.
-              - The password should be different from the username
-              - The password should not be one of the following restricted values {root, admin, administrator}
-              - The password should contain at least 8 characters, 1 alphabetic character(s), 1 digit(s), 1 non-alphanumeric symbol(s)
-              Password : 
-              WFLYDM0102: Password should have at least 1 non-alphanumeric symbol.
-              Are you sure you want to use the password entered yes/no? yes
-              
-              Re-enter Password : 
-              
-              What groups do you want this user to belong to? (Please enter a comma separated list, or leave blank for none)[  ]: 
-              About to add user 'WildflyAdmin' for realm 'ManagementRealm'
-              Is this correct yes/no? yes
-              
-              Added user 'WildflyAdmin' to file '/opt/wildfly/standalone/configuration/mgmt-users.properties'
-              Added user 'WildflyAdmin' to file '/opt/wildfly/domain/configuration/mgmt-users.properties'
-              Added user 'WildflyAdmin' with groups  to file '/opt/wildfly/standalone/configuration/mgmt-groups.properties'
-              Added user 'WildflyAdmin' with groups  to file '/opt/wildfly/domain/configuration/mgmt-groups.properties'
-              
-              Is this new user going to be used for one AS process to connect to another AS process? 
-              e.g. for a slave host controller connecting to the master or for a Remoting connection for server to server Jakarta Enterprise Beans calls.
-              yes/no? yes
-              
-              To represent the user add the following to the server-identities definition <secret value="RGVtb3Bhc3MxMjM0NTY3" />
-          ```
+    __This is hardcoded in the bootscript. Please do not do this in the real world. But for a workshop it expidited setup time for your convenience__
+  
+    [bootscript look for line add-user.sh for how it is done](../.scripts/bicep-vm/virtual-machines/vm-postgresql/bootstrap.sh)
 
-  * Set WildFly path for login by adding the PATH in the bashrc file
-      ```bash
-      cat >> ~/.bashrc <<EOF
-      export WildFly_BIN="/opt/wildfly/bin/"
-      export PATH=\$PATH:/opt/wildfly/bin/
-      EOF
-      ```
-   * Source the new PATH in your session
-      ```bash
-      source ~/.bashrc
-      ```
-   * Set WildFly to listen on all network devices
-      ```bash
-      vi /opt/wildfly/bin/launch.sh
-      ```
-      Add to "-bmanagement=0.0.0.0" to the line below
-      ```text
-      $WILDFLY_HOME/bin/standalone.sh -c $2 -b $3 -bmanagement=0.0.0.0
-      ```
 
-      The file should look like as below
-      ``` text
-      #!/bin/bash
-      if [ "x$WILDFLY_HOME" = "x" ]; then
-          WILDFLY_HOME="/opt/wildfly"
-      fi
-
-      if [[ "$1" == "domain" ]]; then
-          $WILDFLY_HOME/bin/domain.sh -c $2 -b $3
-      else
-          $WILDFLY_HOME/bin/standalone.sh -c $2 -b $3 -bmanagement=0.0.0.0
-      fi
-      ```
-
-  * Restart WildFly
+  * Username: adminuser1
+	* Password: password1!
+	
+  * If you wish to validate WildFly Admin Service is running on port 9990
     ```bash
-    systemctl restart wildfly
+    ss -tunelp | grep 9990
     ```
-  * Validate WildFly Admin Service is running on port 9990
-      ```bash
-      ss -tunelp | grep 9990
-      ```
-      ```text
-      tcp   LISTEN 0      50           0.0.0.0:9990      0.0.0.0:*    users:(("java",pid=79152,fd=497)) uid:991 ino:358887 sk:13 <->  
-      ```
+    ```text
+    tcp   LISTEN 0      50           0.0.0.0:9990      0.0.0.0:*    users:(("java",pid=79152,fd=497)) uid:991 ino:358887 sk:13 <->  
+    ```
 
-* Deploy PostgreSQL 12
-  * Install PostgreSQL 12
-      ```bash
-      sudo dnf -qy module disable postgresql
-      sudo dnf -qy module enable postgresql:12
-      sudo dnf -y install postgresql-server
-      sudo dnf -y install postgresql-contrib
-      ```
-      
-      * Initialise PostgreSQL 
-      ```bash
-      sudo postgresql-setup --initdb
-      sudo systemctl start postgresql
-      sudo systemctl enable postgresql
-      ```
+  * __PGSQL has been configured for you as well with the hardcoded passwords below. DO NOT DO THIS IN REAL WORLD__
+  * [Look in the bootscript for the lines about host based auth](../.scripts/bicep-vm/virtual-machines/vm-postgresql/bootstrap.sh)
+  * [SQL Gist for adding a Postgres user with the password below](https://gist.githubusercontent.com/Sam-Rowe/50497dab992d6bc7a88bcb50828550ae/raw/b93d6ed9abafa7a183ac19bedf9c43f9a3e1bf19/SetPostgresUserAccountPassword.sql)
+  * Check connection to PostgreSQL
+    ```bash
+    psql "dbname=postgres host=10.0.1.4 user=postgres password=Demopass1234567 port=5432"
+    ```
+  * Exit the psql client using "\q"
 
-  * Configure PostgreSQL to listen and permit connections on all network devices
-    * Edit the pg_hba.conf
-    * Navigate to the bottom of the file (hint SHIFT+G in vi)
-    * Set IPv4 to accept connections from all addresses
-    * Set the local and IPv4 connection method to trust (not ident)
-      ```bash
-      vi /var/lib/pgsql/data/pg_hba.conf
-      ```
-      ```text
-            # TYPE  DATABASE        USER            ADDRESS                 METHOD
-            # "local" is for Unix domain socket connections only
-            local   all             all                                     trust
-            # IPv4 local connections:
-            host    all             all             0.0.0.0/0               password
-      ```
-    
-    * Configure PostgreSQL to listen on all addresses
-      * Uncomment the listen_address parameter
-      * Set the listen_address to * for all addresses
-      ```bash
-      vi /var/lib/pgsql/data/postgresql.conf
-      ```
-      ```text
-            listen_addresses = '*'
-      ```
-    
-    * Restart PostgreSQL
-      ```bash
-      sudo systemctl restart postgresql
-      ```
-    
-    * Using the PostgreSQL psql client
-    * Set the "postgresql" user password to a new one (example below uses the password Demopass1234567)
-      ```bash
-      psql -U postgres postgres
-      ```
-      ```bash
-      alter user postgres password 'Demopass1234567';
-      ```
-    * Exit the psql client using "\q"
-    * Check connection to PostgreSQL
-      ```bash
-      psql "dbname=postgres host=10.0.1.4 user=postgres password=Demopass1234567 port=5432"
-      ```
 
 # Deploy Pet Store Application On-Premises to WildFly and PostgreSQL
 * In this section we will deploy our Java Pet Store application to the on-premises VM. 
